@@ -3,8 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>DB Inspector</title>
+<title>DBScout</title>
 <meta name="description" content="Inspect the SQLite database inside any Android or iPhone app you're debugging — live, on the device.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
@@ -68,7 +69,7 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .nav__row{display:flex;align-items:center;gap:18px;padding-block:14px;max-width:1080px;margin:0 auto}
 .brand{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text)}
 .brand .logo{
-  width:30px;height:30px;border-radius:9px;background:var(--accent);flex:none;
+  width:30px;height:30px;border-radius:9px;flex:none;overflow:hidden;
   display:grid;place-items:center;
 }
 .brand .name{font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.1}
@@ -206,6 +207,21 @@ section{padding-block:64px}
 .plan li svg{flex:none;margin-top:2px;color:var(--good)}
 .plan li.no svg{color:var(--muted)}
 .plan li.no{color:var(--muted)}
+.plan__note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:-6px}
+
+/* ---- prova técnica ---- */
+.proof-note{margin-top:22px;font-size:13px;color:var(--muted);text-align:center}
+.proof-note b{color:var(--text);font-weight:650}
+
+/* ---- faq ---- */
+.faqlist{display:flex;flex-direction:column;gap:2px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.faqitem{background:var(--surface)}
+.faqitem summary{padding:18px 22px;font-size:14.5px;font-weight:650;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.faqitem summary::-webkit-details-marker{display:none}
+.faqitem summary::after{content:"+";color:var(--muted);font-weight:400;font-size:18px;flex:none;line-height:1}
+.faqitem[open] summary::after{content:"\2212"}
+.faqitem summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.faqitem p{margin:0;padding:0 22px 18px;color:var(--muted);font-size:13.5px;line-height:1.6;max-width:68ch}
 
 /* ---- download ---- */
 .download{
@@ -255,17 +271,14 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
 <nav class="nav">
   <div class="nav__row container">
     <a class="brand" href="#top">
-      <span class="logo">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.4">
-          <ellipse cx="8" cy="4" rx="5" ry="2"/><path d="M3 4v8c0 1.1 2.24 2 5 2s5-.9 5-2V4"/><path d="M3 8c0 1.1 2.24 2 5 2s5-.9 5-2"/>
-        </svg>
-      </span>
-      <span class="name">DB Inspector</span>
+      <span class="logo"><img src="assets/icon.png" alt="" width="100%" height="100%"></span>
+      <span class="name">DBScout</span>
     </a>
     <div class="navlinks">
       <a href="#recursos" data-i18n="nav-recursos">Features</a>
       <a href="#privacidade" data-i18n="nav-privacidade">Privacy</a>
       <a href="#precos" data-i18n="nav-precos">Pricing</a>
+      <a href="#faq" data-i18n="nav-faq">FAQ</a>
     </div>
     <div class="nav__cta">
       <select class="langsel" id="lang-select" aria-label="Language">
@@ -360,6 +373,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
           whole flow on the device.</p>
       </div>
     </div>
+    <p class="proof-note" data-i18n-html="stat-proof-html">Cached queries: <b>170ms</b> vs. <b>479ms</b> re-copying the database on every click — measured on the test device, not a marketing number.</p>
   </section>
 
   <section id="recursos">
@@ -470,14 +484,15 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8.5 6.5 12 13 4"/></svg><span data-i18n="plan-pro-item3">Cell editing and SQL writes</span></li>
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8.5 6.5 12 13 4"/></svg><span data-i18n="plan-pro-item4">The AI writes too, when you let it</span></li>
         </ul>
-        <a class="btn btn--primary" href="https://sandbox-api.polar.sh/v1/checkout-links/polar_cl_H1FUTDQKwuxsXKriVhgZtfe0Eao2f4wLVCVq545gdh4/redirect" target="_blank" rel="noopener noreferrer" data-i18n="plan-pro-cta">Subscribe to Pro</a>
+        <a class="btn btn--primary" href="https://sandbox-api.polar.sh/v1/checkout-links/polar_cl_H1FUTDQKwuxsXKriVhgZtfe0Eao2f4wLVCVq545gdh4/redirect" target="_blank" rel="noopener noreferrer" data-i18n="plan-pro-cta">Try free for 3 days</a>
+        <p class="plan__note" data-i18n="plan-pro-trial-note">Card required at signup · first charge only after 3 days · cancel before then and pay nothing</p>
       </div>
     </div>
   </section>
 
   <section id="baixar">
     <div class="download">
-      <h2 data-i18n="download-h2">Download DB Inspector</h2>
+      <h2 data-i18n="download-h2">Download DBScout</h2>
       <p data-i18n="download-p">Native installer, no app store. The free plan already opens any database your
         client's app loads.</p>
 
@@ -496,23 +511,49 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       <p class="cmd" id="dl-req">Requires <b>Windows 10</b> or newer · 64-bit</p>
     </div>
   </section>
+
+  <section id="faq">
+    <div class="sechead">
+      <p class="eyebrow"><span class="dot"></span><span data-i18n="faq-eyebrow">FAQ</span></p>
+      <h2 data-i18n="faq-h2">Questions people ask before subscribing</h2>
+    </div>
+    <div class="faqlist">
+      <details class="faqitem">
+        <summary data-i18n="faq-q1">How does the 3-day trial work?</summary>
+        <p data-i18n="faq-a1">Subscribing to either plan starts a 3-day window before the first charge — enough to try writing, cell editing and the AI assistants. Cancel within that window and you're never charged.</p>
+      </details>
+      <details class="faqitem">
+        <summary data-i18n="faq-q2">Can I cancel anytime?</summary>
+        <p data-i18n="faq-a2">Yes, no lock-in. Cancelling stops the next charge, and the license simply reverts to Free the next time it revalidates — no manual step, no support ticket.</p>
+      </details>
+      <details class="faqitem">
+        <summary data-i18n="faq-q3">Does it still work without internet?</summary>
+        <p data-i18n="faq-a3">Yes. Pro keeps working offline for up to 72 hours after the last check and warns you before it expires; a hard refusal from the license server drops it to Free immediately instead.</p>
+      </details>
+      <details class="faqitem">
+        <summary data-i18n="faq-q4">Is it safe to edit a client's production database?</summary>
+        <p data-i18n="faq-a4">Being honest: the real risk is editing while the app on the phone still has that same database open — returning the file underneath it can corrupt what the app is mid-write on. Outside that case, edits are scoped one cell at a time, by row, with type validation.</p>
+      </details>
+      <details class="faqitem">
+        <summary data-i18n="faq-q5">Can the AI assistant see my other files?</summary>
+        <p data-i18n="faq-a5">No. Every assistant runs boxed in to the database on screen only — no file, shell or network access, even the vendor's own tools are disabled. It refuses anything outside that, even if asked.</p>
+      </details>
+    </div>
+  </section>
 </main>
 
 <footer class="container">
   <a class="brand" href="#top">
-    <span class="logo" style="width:24px;height:24px;border-radius:7px">
-      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="1.5">
-        <ellipse cx="8" cy="4" rx="5" ry="2"/><path d="M3 4v8c0 1.1 2.24 2 5 2s5-.9 5-2V4"/><path d="M3 8c0 1.1 2.24 2 5 2s5-.9 5-2"/>
-      </svg>
-    </span>
-    <span class="name">DB Inspector</span>
+    <span class="logo" style="width:24px;height:24px;border-radius:7px"><img src="assets/icon.png" alt="" width="100%" height="100%"></span>
+    <span class="name">DBScout</span>
   </a>
   <div class="links">
     <a href="#recursos" data-i18n="nav-recursos">Features</a>
     <a href="#precos" data-i18n="nav-precos">Pricing</a>
     <a href="#privacidade" data-i18n="nav-privacidade">Privacy</a>
+    <a href="#faq" data-i18n="nav-faq">FAQ</a>
   </div>
-  <p class="copy" data-i18n="footer-copy">© 2026 DB Inspector. A tool for people who debug mobile apps.</p>
+  <p class="copy" data-i18n="footer-copy">© 2026 DBScout. A tool for people who debug mobile apps.</p>
 </footer>
 
 <script>
@@ -524,13 +565,13 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
 
   var T = {
     en: {
-      "nav-recursos": "Features", "nav-privacidade": "Privacy", "nav-precos": "Pricing", "nav-baixar": "Download",
+      "nav-recursos": "Features", "nav-privacidade": "Privacy", "nav-precos": "Pricing", "nav-baixar": "Download", "nav-faq": "FAQ",
       "hero-eyebrow": "For mobile app debugging",
       "hero-h1": "The SQLite database inside your client's app, without leaving <code>adb</code>",
       "hero-lede": "Plug in the Android or the iPhone, open any database the app loads, and browse it table by table — live, while the app runs. No copying the <code>.db</code> out, no DB Browser, no <code>adb pull</code> every time a column changes.",
       "hero-cta-primary": "Download for free", "hero-cta-secondary": "See what's in Pro",
       "hero-fineprint": "Windows · free plan, no signup · zero telemetry",
-      "demo-aria": "DB Inspector screenshot showing the TB_Indicador_Coleta table from a connected Android app",
+      "demo-aria": "DBScout screenshot showing the TB_Indicador_Coleta table from a connected Android app",
       "vantagens-eyebrow": "In practice", "vantagens-h2": "The time you stop losing",
       "vantagens-p": "Less back-and-forth to find out what the app recorded, less guessing about where the bug lives.",
       "step1-h3": "Fix it without asking for a screenshot",
@@ -572,24 +613,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Count, filter, group and chart straight from the grid",
       "plan-pro-item3": "Cell editing and SQL writes",
       "plan-pro-item4": "The AI writes too, when you let it",
-      "plan-pro-cta": "Subscribe to Pro",
-      "download-h2": "Download DB Inspector",
+      "plan-pro-cta": "Try free for 3 days",
+      "plan-pro-trial-note": "Card required at signup · first charge only after 3 days · cancel before then and pay nothing",
+      "stat-proof-html": "Cached queries: <b>170ms</b> vs. <b>479ms</b> re-copying the database on every click — measured on the test device, not a marketing number.",
+      "faq-eyebrow": "FAQ", "faq-h2": "Questions people ask before subscribing",
+      "faq-q1": "How does the 3-day trial work?",
+      "faq-a1": "Subscribing to either plan starts a 3-day window before the first charge — enough to try writing, cell editing and the AI assistants. Cancel within that window and you're never charged.",
+      "faq-q2": "Can I cancel anytime?",
+      "faq-a2": "Yes, no lock-in. Cancelling stops the next charge, and the license simply reverts to Free the next time it revalidates — no manual step, no support ticket.",
+      "faq-q3": "Does it still work without internet?",
+      "faq-a3": "Yes. Pro keeps working offline for up to 72 hours after the last check and warns you before it expires; a hard refusal from the license server drops it to Free immediately instead.",
+      "faq-q4": "Is it safe to edit a client's production database?",
+      "faq-a4": "Being honest: the real risk is editing while the app on the phone still has that same database open — returning the file underneath it can corrupt what the app is mid-write on. Outside that case, edits are scoped one cell at a time, by row, with type validation.",
+      "faq-q5": "Can the AI assistant see my other files?",
+      "faq-a5": "No. Every assistant runs boxed in to the database on screen only — no file, shell or network access, even the vendor's own tools are disabled. It refuses anything outside that, even if asked.",
+      "download-h2": "Download DBScout",
       "download-p": "Native installer, no app store. The free plan already opens any database your client's app loads.",
       "download-os-aria": "Operating system",
       "dl-label-win": "Download for Windows", "dl-label-mac": "Download for macOS",
       "dl-req-win": "Requires <b>Windows 10</b> or newer · 64-bit",
       "dl-req-mac": "Requires <b>macOS 12</b> (Monterey) or newer · Apple Silicon and Intel",
-      "footer-copy": "© 2026 DB Inspector. A tool for people who debug mobile apps.",
+      "footer-copy": "© 2026 DBScout. A tool for people who debug mobile apps.",
       "lang-aria": "Language"
     },
     pt: {
-      "nav-recursos": "Recursos", "nav-privacidade": "Privacidade", "nav-precos": "Preços", "nav-baixar": "Baixar",
+      "nav-recursos": "Recursos", "nav-privacidade": "Privacidade", "nav-precos": "Preços", "nav-baixar": "Baixar", "nav-faq": "Dúvidas",
       "hero-eyebrow": "Para quem debuga apps mobile",
       "hero-h1": "O SQLite dentro do app do seu cliente, sem sair do <code>adb</code>",
       "hero-lede": "Plugue o Android ou o iPhone, abra qualquer banco que o app carrega e navegue tabela por tabela — ao vivo, com o app rodando. Sem copiar o <code>.db</code> pra fora, sem DB Browser, sem <code>adb pull</code> toda vez que uma coluna muda.",
       "hero-cta-primary": "Baixar grátis", "hero-cta-secondary": "Ver o que é Pro",
       "hero-fineprint": "Windows · plano gratuito sem cadastro · zero telemetria",
-      "demo-aria": "Recorte do DB Inspector mostrando a tabela TB_Indicador_Coleta de um app Android conectado",
+      "demo-aria": "Recorte do DBScout mostrando a tabela TB_Indicador_Coleta de um app Android conectado",
       "vantagens-eyebrow": "Na prática", "vantagens-h2": "O tempo que você deixa de perder",
       "vantagens-p": "Menos ida e volta pra descobrir o que o app gravou, menos suposição sobre onde o bug mora.",
       "step1-h3": "Resolve sem pedir print",
@@ -631,24 +685,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Contagem, filtro, agrupamento e gráfico direto da grade",
       "plan-pro-item3": "Edição de célula e escrita por SQL",
       "plan-pro-item4": "A IA também escreve, quando você deixar",
-      "plan-pro-cta": "Assinar o Pro",
-      "download-h2": "Baixe o DB Inspector",
+      "plan-pro-cta": "Testar grátis por 3 dias",
+      "plan-pro-trial-note": "Cartão necessário no cadastro · primeira cobrança só depois de 3 dias · cancele antes e não paga nada",
+      "stat-proof-html": "Consulta com cache: <b>170ms</b> contra <b>479ms</b> copiando o banco de novo a cada clique — medido no aparelho de teste, não é número de marketing.",
+      "faq-eyebrow": "Dúvidas", "faq-h2": "Perguntas antes de assinar",
+      "faq-q1": "Como funciona o teste de 3 dias?",
+      "faq-a1": "Ao assinar mensal ou anual, você tem 3 dias antes da primeira cobrança — dá pra testar escrita, edição de célula e os assistentes de IA. Cancelar dentro desse prazo não gera cobrança nenhuma.",
+      "faq-q2": "Posso cancelar quando quiser?",
+      "faq-a2": "Sim, sem fidelidade. Cancelar impede a próxima cobrança, e a licença volta sozinha pro plano gratuito na próxima revalidação — sem passo manual, sem abrir chamado.",
+      "faq-q3": "Funciona sem internet?",
+      "faq-a3": "Sim. O Pro continua funcionando offline por até 72 horas depois da última conferência e avisa antes de expirar; uma recusa do servidor de licenças, essa sim, derruba pro gratuito na hora.",
+      "faq-q4": "É seguro editar o banco de um app de cliente em produção?",
+      "faq-a4": "Sendo honesto: o risco real é editar com o app ainda aberto usando esse mesmo banco no celular — devolver o arquivo debaixo dele pode corromper o que o app está gravando no meio. Fora esse caso, a edição é sempre uma célula por vez, por linha, com validação de tipo.",
+      "faq-q5": "A IA da ferramenta vê meus outros arquivos?",
+      "faq-a5": "Não. Cada assistente roda capado só pro banco em tela — sem arquivo, shell ou rede, nem as ferramentas próprias do fornecedor. Ele recusa qualquer coisa fora disso, mesmo se pedirem.",
+      "download-h2": "Baixe o DBScout",
       "download-p": "Instalador nativo, sem loja de aplicativos. O plano gratuito já abre qualquer banco que o app do seu cliente carregar.",
       "download-os-aria": "Sistema operacional",
       "dl-label-win": "Baixar para Windows", "dl-label-mac": "Baixar para macOS",
       "dl-req-win": "Requer <b>Windows 10</b> ou mais recente · 64-bit",
       "dl-req-mac": "Requer <b>macOS 12</b> (Monterey) ou mais recente · Apple Silicon e Intel",
-      "footer-copy": "© 2026 DB Inspector. Ferramenta pra quem depura apps mobile.",
+      "footer-copy": "© 2026 DBScout. Ferramenta pra quem depura apps mobile.",
       "lang-aria": "Idioma"
     },
     es: {
-      "nav-recursos": "Funciones", "nav-privacidade": "Privacidad", "nav-precos": "Precios", "nav-baixar": "Descargar",
+      "nav-recursos": "Funciones", "nav-privacidade": "Privacidad", "nav-precos": "Precios", "nav-baixar": "Descargar", "nav-faq": "Preguntas",
       "hero-eyebrow": "Para quien depura apps móviles",
       "hero-h1": "La base SQLite dentro de la app de tu cliente, sin salir de <code>adb</code>",
       "hero-lede": "Conecta el Android o el iPhone, abre cualquier base que la app cargue y navégala tabla por tabla — en vivo, con la app en ejecución. Sin copiar el <code>.db</code>, sin DB Browser, sin <code>adb pull</code> cada vez que cambia una columna.",
       "hero-cta-primary": "Descargar gratis", "hero-cta-secondary": "Ver qué incluye Pro",
       "hero-fineprint": "Windows · plan gratuito sin registro · cero telemetría",
-      "demo-aria": "Captura de DB Inspector mostrando la tabla TB_Indicador_Coleta de una app Android conectada",
+      "demo-aria": "Captura de DBScout mostrando la tabla TB_Indicador_Coleta de una app Android conectada",
       "vantagens-eyebrow": "En la práctica", "vantagens-h2": "El tiempo que dejas de perder",
       "vantagens-p": "Menos idas y vueltas para saber qué registró la app, menos suposiciones sobre dónde vive el error.",
       "step1-h3": "Resuélvelo sin pedir una captura",
@@ -690,24 +757,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Conteo, filtro, agrupamiento y gráfico directo desde la grilla",
       "plan-pro-item3": "Edición de celdas y escritura por SQL",
       "plan-pro-item4": "La IA también escribe, cuando tú lo permitas",
-      "plan-pro-cta": "Suscribirse a Pro",
-      "download-h2": "Descarga DB Inspector",
+      "plan-pro-cta": "Prueba gratis por 3 días",
+      "plan-pro-trial-note": "Se requiere tarjeta al registrarte · el primer cobro es recién a los 3 días · cancela antes y no pagas nada",
+      "stat-proof-html": "Consulta con caché: <b>170ms</b> frente a <b>479ms</b> copiando la base de nuevo en cada clic — medido en el dispositivo de prueba, no es un número de marketing.",
+      "faq-eyebrow": "Preguntas", "faq-h2": "Preguntas antes de suscribirte",
+      "faq-q1": "¿Cómo funciona la prueba de 3 días?",
+      "faq-a1": "Al suscribirte a cualquiera de los planes, tienes 3 días antes del primer cobro — suficiente para probar la escritura, la edición de celdas y los asistentes de IA. Cancelar dentro de ese plazo no genera ningún cobro.",
+      "faq-q2": "¿Puedo cancelar cuando quiera?",
+      "faq-a2": "Sí, sin permanencia. Cancelar detiene el próximo cobro, y la licencia vuelve sola al plan gratuito en la siguiente revalidación — sin pasos manuales, sin abrir un ticket.",
+      "faq-q3": "¿Funciona sin internet?",
+      "faq-a3": "Sí. El Pro sigue funcionando sin conexión hasta 72 horas después de la última verificación y avisa antes de expirar; un rechazo del servidor de licencias, en cambio, lo baja al plan gratuito al instante.",
+      "faq-q4": "¿Es seguro editar la base de datos de producción de un cliente?",
+      "faq-a4": "Con honestidad: el riesgo real es editar mientras la app en el celular sigue usando esa misma base — devolver el archivo por debajo de ella puede corromper lo que la app está grabando en ese momento. Fuera de ese caso, la edición siempre es una celda a la vez, por fila, con validación de tipo.",
+      "faq-q5": "¿La IA de la herramienta ve mis otros archivos?",
+      "faq-a5": "No. Cada asistente corre limitado solo a la base en pantalla — sin archivos, shell ni red, ni siquiera las herramientas propias del proveedor. Rechaza cualquier otra cosa, aunque se lo pidan.",
+      "download-h2": "Descarga DBScout",
       "download-p": "Instalador nativo, sin tienda de apps. El plan gratuito ya abre cualquier base que cargue la app de tu cliente.",
       "download-os-aria": "Sistema operativo",
       "dl-label-win": "Descargar para Windows", "dl-label-mac": "Descargar para macOS",
       "dl-req-win": "Requiere <b>Windows 10</b> o más reciente · 64-bit",
       "dl-req-mac": "Requiere <b>macOS 12</b> (Monterey) o más reciente · Apple Silicon e Intel",
-      "footer-copy": "© 2026 DB Inspector. Una herramienta para quienes depuran apps móviles.",
+      "footer-copy": "© 2026 DBScout. Una herramienta para quienes depuran apps móviles.",
       "lang-aria": "Idioma"
     },
     fr: {
-      "nav-recursos": "Fonctionnalités", "nav-privacidade": "Confidentialité", "nav-precos": "Tarifs", "nav-baixar": "Télécharger",
+      "nav-recursos": "Fonctionnalités", "nav-privacidade": "Confidentialité", "nav-precos": "Tarifs", "nav-baixar": "Télécharger", "nav-faq": "Questions",
       "hero-eyebrow": "Pour le débogage d'applications mobiles",
       "hero-h1": "La base SQLite dans l'appli de votre client, sans quitter <code>adb</code>",
       "hero-lede": "Branchez l'Android ou l'iPhone, ouvrez n'importe quelle base que l'appli charge et parcourez-la table par table — en direct, pendant que l'appli tourne. Plus besoin de copier le <code>.db</code>, ni de DB Browser, ni d'<code>adb pull</code> à chaque colonne modifiée.",
       "hero-cta-primary": "Télécharger gratuitement", "hero-cta-secondary": "Voir ce qu'offre Pro",
       "hero-fineprint": "Windows · offre gratuite sans inscription · zéro télémétrie",
-      "demo-aria": "Aperçu de DB Inspector montrant la table TB_Indicador_Coleta d'une appli Android connectée",
+      "demo-aria": "Aperçu de DBScout montrant la table TB_Indicador_Coleta d'une appli Android connectée",
       "vantagens-eyebrow": "En pratique", "vantagens-h2": "Le temps que vous arrêtez de perdre",
       "vantagens-p": "Moins d'allers-retours pour savoir ce que l'appli a enregistré, moins de suppositions sur l'origine du bug.",
       "step1-h3": "Réglez le problème sans demander de capture d'écran",
@@ -749,24 +829,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Comptage, filtre, regroupement et graphique directement depuis la grille",
       "plan-pro-item3": "Édition de cellule et écriture SQL",
       "plan-pro-item4": "L'IA écrit aussi, quand vous le lui permettez",
-      "plan-pro-cta": "S'abonner à Pro",
-      "download-h2": "Téléchargez DB Inspector",
+      "plan-pro-cta": "Essai gratuit de 3 jours",
+      "plan-pro-trial-note": "Carte requise à l'inscription · premier prélèvement seulement après 3 jours · annulez avant et ne payez rien",
+      "stat-proof-html": "Requête avec cache : <b>170ms</b> contre <b>479ms</b> en recopiant la base à chaque clic — mesuré sur l'appareil de test, pas un chiffre marketing.",
+      "faq-eyebrow": "Questions", "faq-h2": "Questions avant de s'abonner",
+      "faq-q1": "Comment fonctionne l'essai de 3 jours ?",
+      "faq-a1": "En vous abonnant à l'un ou l'autre forfait, vous disposez de 3 jours avant le premier prélèvement — de quoi tester l'écriture, l'édition de cellule et les assistants IA. Annulez dans ce délai et vous ne serez jamais prélevé.",
+      "faq-q2": "Puis-je annuler à tout moment ?",
+      "faq-a2": "Oui, sans engagement. L'annulation arrête le prochain prélèvement, et la licence repasse automatiquement au plan gratuit à la prochaine revalidation — sans étape manuelle, sans ticket.",
+      "faq-q3": "Ça fonctionne sans connexion internet ?",
+      "faq-a3": "Oui. Le Pro continue de fonctionner hors ligne jusqu'à 72 heures après la dernière vérification et prévient avant d'expirer ; un refus explicite du serveur de licences, lui, repasse immédiatement au plan gratuit.",
+      "faq-q4": "Est-ce sûr de modifier la base de production d'un client ?",
+      "faq-a4": "En toute honnêteté : le vrai risque, c'est de modifier pendant que l'appli sur le téléphone utilise encore cette même base — remettre le fichier en dessous peut corrompre ce que l'appli est en train d'écrire. En dehors de ce cas, la modification se fait toujours cellule par cellule, par ligne, avec validation du type.",
+      "faq-q5": "L'IA de l'outil voit-elle mes autres fichiers ?",
+      "faq-a5": "Non. Chaque assistant tourne cantonné à la seule base affichée à l'écran — pas de fichier, de shell ni de réseau, pas même les outils propres de l'éditeur. Il refuse tout le reste, même si on le lui demande.",
+      "download-h2": "Téléchargez DBScout",
       "download-p": "Installeur natif, sans store. L'offre gratuite ouvre déjà toute base que charge l'appli de votre client.",
       "download-os-aria": "Système d'exploitation",
       "dl-label-win": "Télécharger pour Windows", "dl-label-mac": "Télécharger pour macOS",
       "dl-req-win": "Nécessite <b>Windows 10</b> ou plus récent · 64 bits",
       "dl-req-mac": "Nécessite <b>macOS 12</b> (Monterey) ou plus récent · Apple Silicon et Intel",
-      "footer-copy": "© 2026 DB Inspector. Un outil pour ceux qui déboguent des applis mobiles.",
+      "footer-copy": "© 2026 DBScout. Un outil pour ceux qui déboguent des applis mobiles.",
       "lang-aria": "Langue"
     },
     de: {
-      "nav-recursos": "Funktionen", "nav-privacidade": "Datenschutz", "nav-precos": "Preise", "nav-baixar": "Herunterladen",
+      "nav-recursos": "Funktionen", "nav-privacidade": "Datenschutz", "nav-precos": "Preise", "nav-baixar": "Herunterladen", "nav-faq": "Fragen",
       "hero-eyebrow": "Für das Debugging mobiler Apps",
       "hero-h1": "Die SQLite-Datenbank in der App Ihres Kunden, ohne <code>adb</code> zu verlassen",
       "hero-lede": "Android oder iPhone anschließen, jede Datenbank öffnen, die die App lädt, und Tabelle für Tabelle durchsehen — live, während die App läuft. Keine <code>.db</code> mehr kopieren, kein DB Browser, kein <code>adb pull</code> bei jeder Spaltenänderung.",
       "hero-cta-primary": "Kostenlos herunterladen", "hero-cta-secondary": "Pro-Funktionen ansehen",
       "hero-fineprint": "Windows · kostenloser Plan ohne Anmeldung · null Telemetrie",
-      "demo-aria": "Ausschnitt von DB Inspector mit der Tabelle TB_Indicador_Coleta einer verbundenen Android-App",
+      "demo-aria": "Ausschnitt von DBScout mit der Tabelle TB_Indicador_Coleta einer verbundenen Android-App",
       "vantagens-eyebrow": "In der Praxis", "vantagens-h2": "Die Zeit, die Sie nicht mehr verlieren",
       "vantagens-p": "Weniger Hin und Her, um herauszufinden, was die App gespeichert hat, weniger Rätselraten, wo der Bug sitzt.",
       "step1-h3": "Beheben, ohne nach einem Screenshot zu fragen",
@@ -808,24 +901,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Zählen, Filtern, Gruppieren und Diagramme direkt aus dem Raster",
       "plan-pro-item3": "Zellenbearbeitung und SQL-Schreibzugriff",
       "plan-pro-item4": "Die KI schreibt ebenfalls, wenn Sie es zulassen",
-      "plan-pro-cta": "Pro abonnieren",
-      "download-h2": "DB Inspector herunterladen",
+      "plan-pro-cta": "3 Tage kostenlos testen",
+      "plan-pro-trial-note": "Karte bei der Anmeldung erforderlich · erste Abbuchung erst nach 3 Tagen · vorher kündigen und nichts bezahlen",
+      "stat-proof-html": "Zwischengespeicherte Abfrage: <b>170ms</b> gegenüber <b>479ms</b>, wenn die Datenbank bei jedem Klick neu kopiert wird — gemessen auf dem Testgerät, keine Marketingzahl.",
+      "faq-eyebrow": "Fragen", "faq-h2": "Fragen vor dem Abonnieren",
+      "faq-q1": "Wie funktioniert die 3-tägige Testphase?",
+      "faq-a1": "Mit jedem Abo beginnt eine 3-tägige Frist vor der ersten Abbuchung — genug Zeit, um Schreiben, Zellenbearbeitung und die KI-Assistenten zu testen. Kündigen Sie innerhalb dieser Frist, wird nie etwas abgebucht.",
+      "faq-q2": "Kann ich jederzeit kündigen?",
+      "faq-a2": "Ja, ohne Mindestlaufzeit. Die Kündigung stoppt die nächste Abbuchung, und die Lizenz kehrt bei der nächsten Überprüfung von selbst zum kostenlosen Plan zurück — kein manueller Schritt, kein Support-Ticket.",
+      "faq-q3": "Funktioniert es auch offline?",
+      "faq-a3": "Ja. Pro funktioniert nach der letzten Prüfung noch bis zu 72 Stunden offline weiter und warnt vor Ablauf; eine ausdrückliche Ablehnung durch den Lizenzserver schaltet dagegen sofort auf den kostenlosen Plan zurück.",
+      "faq-q4": "Ist es sicher, die Produktionsdatenbank eines Kunden zu bearbeiten?",
+      "faq-a4": "Ehrlich gesagt: Das eigentliche Risiko besteht darin, zu bearbeiten, während die App auf dem Handy dieselbe Datenbank noch benutzt — die Datei darunter zurückzuschreiben kann zerstören, was die App gerade schreibt. Abgesehen davon erfolgt die Bearbeitung immer zellenweise, pro Zeile, mit Typprüfung.",
+      "faq-q5": "Sieht der KI-Assistent meine anderen Dateien?",
+      "faq-a5": "Nein. Jeder Assistent läuft eingeschränkt nur auf die Datenbank am Bildschirm — kein Datei-, Shell- oder Netzwerkzugriff, nicht einmal die eigenen Tools des Anbieters. Er lehnt alles andere ab, selbst wenn danach gefragt wird.",
+      "download-h2": "DBScout herunterladen",
       "download-p": "Nativer Installer, kein App Store. Der kostenlose Plan öffnet bereits jede Datenbank, die die App Ihres Kunden lädt.",
       "download-os-aria": "Betriebssystem",
       "dl-label-win": "Für Windows herunterladen", "dl-label-mac": "Für macOS herunterladen",
       "dl-req-win": "Erfordert <b>Windows 10</b> oder neuer · 64-Bit",
       "dl-req-mac": "Erfordert <b>macOS 12</b> (Monterey) oder neuer · Apple Silicon und Intel",
-      "footer-copy": "© 2026 DB Inspector. Ein Werkzeug für alle, die mobile Apps debuggen.",
+      "footer-copy": "© 2026 DBScout. Ein Werkzeug für alle, die mobile Apps debuggen.",
       "lang-aria": "Sprache"
     },
     it: {
-      "nav-recursos": "Funzionalità", "nav-privacidade": "Privacy", "nav-precos": "Prezzi", "nav-baixar": "Scarica",
+      "nav-recursos": "Funzionalità", "nav-privacidade": "Privacy", "nav-precos": "Prezzi", "nav-baixar": "Scarica", "nav-faq": "Domande",
       "hero-eyebrow": "Per il debug di app mobile",
       "hero-h1": "Il database SQLite dentro l'app del tuo cliente, senza uscire da <code>adb</code>",
       "hero-lede": "Collega l'Android o l'iPhone, apri qualsiasi database caricato dall'app e sfoglialo tabella per tabella — in tempo reale, con l'app in esecuzione. Niente più copia del <code>.db</code>, niente DB Browser, niente <code>adb pull</code> ogni volta che cambia una colonna.",
       "hero-cta-primary": "Scarica gratis", "hero-cta-secondary": "Scopri cosa offre Pro",
       "hero-fineprint": "Windows · piano gratuito senza registrazione · zero telemetria",
-      "demo-aria": "Anteprima di DB Inspector con la tabella TB_Indicador_Coleta di un'app Android connessa",
+      "demo-aria": "Anteprima di DBScout con la tabella TB_Indicador_Coleta di un'app Android connessa",
       "vantagens-eyebrow": "Nella pratica", "vantagens-h2": "Il tempo che smetti di perdere",
       "vantagens-p": "Meno andirivieni per scoprire cosa ha registrato l'app, meno supposizioni su dove si nasconde il bug.",
       "step1-h3": "Risolvi senza chiedere uno screenshot",
@@ -867,24 +973,37 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "Conteggio, filtro, raggruppamento e grafico direttamente dalla griglia",
       "plan-pro-item3": "Modifica delle celle e scrittura via SQL",
       "plan-pro-item4": "Anche l'IA scrive, quando glielo permetti",
-      "plan-pro-cta": "Abbonati a Pro",
-      "download-h2": "Scarica DB Inspector",
+      "plan-pro-cta": "Prova gratuita di 3 giorni",
+      "plan-pro-trial-note": "Carta richiesta alla registrazione · primo addebito solo dopo 3 giorni · annulla prima e non paghi nulla",
+      "stat-proof-html": "Query con cache: <b>170ms</b> contro <b>479ms</b> ricopiando il database a ogni clic — misurato sul dispositivo di test, non un numero di marketing.",
+      "faq-eyebrow": "Domande", "faq-h2": "Domande prima di abbonarti",
+      "faq-q1": "Come funziona la prova di 3 giorni?",
+      "faq-a1": "Abbonandoti a uno dei due piani hai 3 giorni prima del primo addebito — abbastanza per provare la scrittura, la modifica delle celle e gli assistenti IA. Annullando entro quel termine non viene addebitato nulla.",
+      "faq-q2": "Posso annullare quando voglio?",
+      "faq-a2": "Sì, senza vincoli. Annullare blocca il prossimo addebito, e la licenza torna da sola al piano gratuito alla successiva rivalidazione — nessun passaggio manuale, nessun ticket di supporto.",
+      "faq-q3": "Funziona anche senza internet?",
+      "faq-a3": "Sì. Il Pro continua a funzionare offline fino a 72 ore dopo l'ultimo controllo e avvisa prima di scadere; un rifiuto esplicito del server delle licenze, invece, riporta subito al piano gratuito.",
+      "faq-q4": "È sicuro modificare il database di produzione di un cliente?",
+      "faq-a4": "Onestamente: il rischio reale è modificare mentre l'app sul telefono sta ancora usando quello stesso database — rimettere il file sotto di essa può corrompere ciò che l'app sta scrivendo in quel momento. Al di fuori di questo caso, la modifica avviene sempre una cella alla volta, per riga, con validazione del tipo.",
+      "faq-q5": "L'IA dello strumento vede i miei altri file?",
+      "faq-a5": "No. Ogni assistente gira confinato solo al database a schermo — nessun accesso a file, shell o rete, nemmeno gli strumenti propri del fornitore. Rifiuta qualsiasi altra cosa, anche se richiesto.",
+      "download-h2": "Scarica DBScout",
       "download-p": "Installer nativo, senza app store. Il piano gratuito apre già qualsiasi database caricato dall'app del tuo cliente.",
       "download-os-aria": "Sistema operativo",
       "dl-label-win": "Scarica per Windows", "dl-label-mac": "Scarica per macOS",
       "dl-req-win": "Richiede <b>Windows 10</b> o versioni successive · 64-bit",
       "dl-req-mac": "Richiede <b>macOS 12</b> (Monterey) o versioni successive · Apple Silicon e Intel",
-      "footer-copy": "© 2026 DB Inspector. Uno strumento per chi fa il debug di app mobile.",
+      "footer-copy": "© 2026 DBScout. Uno strumento per chi fa il debug di app mobile.",
       "lang-aria": "Lingua"
     },
     zh: {
-      "nav-recursos": "功能", "nav-privacidade": "隐私", "nav-precos": "价格", "nav-baixar": "下载",
+      "nav-recursos": "功能", "nav-privacidade": "隐私", "nav-precos": "价格", "nav-baixar": "下载", "nav-faq": "常见问题",
       "hero-eyebrow": "专为移动应用调试打造",
       "hero-h1": "SQLite 数据库就在客户应用内部,不必离开 <code>adb</code>",
       "hero-lede": "连接 Android 或 iPhone,打开应用加载的任意数据库,像浏览表格一样逐表查看——应用运行时实时更新。不用把 <code>.db</code> 复制出来,不用 DB Browser,列一变就得 <code>adb pull</code> 的日子也过去了。",
       "hero-cta-primary": "免费下载", "hero-cta-secondary": "查看 Pro 功能",
       "hero-fineprint": "支持 Windows · 免费版无需注册 · 零遥测",
-      "demo-aria": "DB Inspector 截图,显示已连接 Android 应用中的 TB_Indicador_Coleta 表",
+      "demo-aria": "DBScout 截图,显示已连接 Android 应用中的 TB_Indicador_Coleta 表",
       "vantagens-eyebrow": "实际应用", "vantagens-h2": "帮你省下的时间",
       "vantagens-p": "减少来回沟通去弄清应用记录了什么,减少对 bug 出处的猜测。",
       "step1-h3": "无需截图也能解决问题",
@@ -926,14 +1045,27 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "plan-pro-item2": "直接在表格里计数、筛选、分组和绘图",
       "plan-pro-item3": "单元格编辑和 SQL 写入",
       "plan-pro-item4": "授权后 AI 也能写入数据",
-      "plan-pro-cta": "订阅 Pro",
-      "download-h2": "下载 DB Inspector",
+      "plan-pro-cta": "免费试用3天",
+      "plan-pro-trial-note": "注册时需绑定银行卡 · 3天后才首次扣款 · 提前取消不产生任何费用",
+      "stat-proof-html": "带缓存的查询:<b>170毫秒</b>,而每次点击都重新复制数据库需要<b>479毫秒</b>——这是在测试设备上实测的数字,不是营销说辞。",
+      "faq-eyebrow": "常见问题", "faq-h2": "订阅前常见问题",
+      "faq-q1": "3天试用是如何运作的?",
+      "faq-a1": "订阅任一套餐后,首次扣款前有3天试用期——足够体验写入、单元格编辑和AI助手。在此期间取消,不会产生任何费用。",
+      "faq-q2": "可以随时取消吗?",
+      "faq-a2": "可以,没有合约期限制。取消后不会再扣款,许可证会在下次校验时自动回退到免费版——无需手动操作,也不用联系支持。",
+      "faq-q3": "没有网络也能用吗?",
+      "faq-a3": "可以。Pro版在最后一次校验后,离线仍可使用长达72小时,并会在过期前提醒;而许可证服务器的明确拒绝会立即将其降级为免费版。",
+      "faq-q4": "编辑客户生产环境的数据库安全吗?",
+      "faq-a4": "坦白说:真正的风险在于手机上的应用仍在使用同一个数据库时进行编辑——把文件写回去可能会破坏应用正在写入的内容。除此之外,编辑始终是逐个单元格、按行进行,并带有类型校验。",
+      "faq-q5": "工具里的AI助手能看到我的其他文件吗?",
+      "faq-a5": "不能。每个助手都被限制只能访问屏幕上的数据库——没有文件、Shell或网络访问权限,甚至厂商自带的工具也被禁用。除此之外的任何请求它都会拒绝。",
+      "download-h2": "下载 DBScout",
       "download-p": "原生安装包,无需应用商店。免费版已经可以打开客户应用加载的任意数据库。",
       "download-os-aria": "操作系统",
       "dl-label-win": "下载 Windows 版", "dl-label-mac": "下载 macOS 版",
       "dl-req-win": "需要 <b>Windows 10</b> 或更新版本 · 64 位",
       "dl-req-mac": "需要 <b>macOS 12</b>(Monterey)或更新版本 · 支持 Apple Silicon 和 Intel",
-      "footer-copy": "© 2026 DB Inspector。为调试移动应用的人打造的工具。",
+      "footer-copy": "© 2026 DBScout。为调试移动应用的人打造的工具。",
       "lang-aria": "语言"
     }
   };

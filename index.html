@@ -239,6 +239,13 @@ section{padding-block:64px}
 .oschoice button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:var(--shadow)}
 .oschoice button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .download .ctas{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;justify-content:center}
+.download .ctas .btn{height:46px;padding:0 22px;font-size:15px;border-radius:11px}
+.download .ctas .btn svg{flex:none}
+.download .ctas .btn--vscode{background:var(--surface);border-color:var(--border)}
+.download .ctas .btn--vscode:hover{background:var(--surface-alt);border-color:var(--accent)}
+.download .ctas .btn--vscode svg{color:var(--accent-text)}
+#dl-btn .ico-os{display:none}
+#dl-btn[data-os="win"] .ico-win,#dl-btn[data-os="mac"] .ico-mac{display:inline-block}
 .download .cmd{
   margin-top:22px;font-family:"JetBrains Mono",monospace;font-size:12.5px;background:var(--surface-sunk);
   border:1px solid var(--border-soft);border-radius:8px;padding:10px 16px;color:var(--muted);
@@ -502,9 +509,15 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       </div>
 
       <div class="ctas">
-        <a class="btn btn--primary" id="dl-btn" href="https://pub-207f7705f0ce43cfb58e0c258807b7eb.r2.dev/v1.0.0/DBScout_1.0.0_x64-setup.exe">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 2.5v8M4.5 7l3.5 3.5L11.5 7"/><path d="M3 13.5h10"/></svg>
+        <a class="btn btn--primary" id="dl-btn" data-os="win" href="https://pub-207f7705f0ce43cfb58e0c258807b7eb.r2.dev/v1.0.0/DBScout_1.0.0_x64-setup.exe">
+          <svg class="ico-os ico-win" width="17" height="17" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M1 2.6 6.6 1.8v5.1H1zM7.4 1.7 15 .6v6.3H7.4zM1 7.7h5.6v5.1L1 12zM7.4 7.7H15v6.4l-7.6-1.1z"/></svg>
+          <svg class="ico-os ico-mac" width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="3" width="11" height="7.5" rx="1.2"/><path d="M1 13h14"/></svg>
+          
           <span id="dl-label">Download for Windows</span>
+        </a>
+        <a class="btn btn--vscode" id="dl-vscode" href="https://marketplace.visualstudio.com/items?itemName=dbscout.dbscout-vscode" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.5 4.5 2 8l3.5 3.5M10.5 4.5 14 8l-3.5 3.5M9 3 7 13"/></svg>
+          <span id="dl-vscode-label" data-i18n="dl-vscode">Install for VS Code</span>
         </a>
       </div>
 
@@ -630,6 +643,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "Download DBScout",
       "download-p": "Native installer, no app store. The free plan already opens any database your client's app loads.",
       "download-os-aria": "Operating system",
+      "dl-vscode": "Install for VS Code",
       "dl-label-win": "Download for Windows", "dl-label-mac": "Download for macOS",
       "dl-req-win": "Requires <b>Windows 10</b> or newer · 64-bit",
       "dl-req-mac": "Requires <b>macOS 12</b> (Monterey) or newer · Apple Silicon and Intel",
@@ -702,6 +716,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "Baixe o DBScout",
       "download-p": "Instalador nativo, sem loja de aplicativos. O plano gratuito já abre qualquer banco que o app do seu cliente carregar.",
       "download-os-aria": "Sistema operacional",
+      "dl-vscode": "Instalar no VS Code",
       "dl-label-win": "Baixar para Windows", "dl-label-mac": "Baixar para macOS",
       "dl-req-win": "Requer <b>Windows 10</b> ou mais recente · 64-bit",
       "dl-req-mac": "Requer <b>macOS 12</b> (Monterey) ou mais recente · Apple Silicon e Intel",
@@ -774,6 +789,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "Descarga DBScout",
       "download-p": "Instalador nativo, sin tienda de apps. El plan gratuito ya abre cualquier base que cargue la app de tu cliente.",
       "download-os-aria": "Sistema operativo",
+      "dl-vscode": "Instalar en VS Code",
       "dl-label-win": "Descargar para Windows", "dl-label-mac": "Descargar para macOS",
       "dl-req-win": "Requiere <b>Windows 10</b> o más reciente · 64-bit",
       "dl-req-mac": "Requiere <b>macOS 12</b> (Monterey) o más reciente · Apple Silicon e Intel",
@@ -846,6 +862,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "Téléchargez DBScout",
       "download-p": "Installeur natif, sans store. L'offre gratuite ouvre déjà toute base que charge l'appli de votre client.",
       "download-os-aria": "Système d'exploitation",
+      "dl-vscode": "Installer dans VS Code",
       "dl-label-win": "Télécharger pour Windows", "dl-label-mac": "Télécharger pour macOS",
       "dl-req-win": "Nécessite <b>Windows 10</b> ou plus récent · 64 bits",
       "dl-req-mac": "Nécessite <b>macOS 12</b> (Monterey) ou plus récent · Apple Silicon et Intel",
@@ -918,6 +935,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "DBScout herunterladen",
       "download-p": "Nativer Installer, kein App Store. Der kostenlose Plan öffnet bereits jede Datenbank, die die App Ihres Kunden lädt.",
       "download-os-aria": "Betriebssystem",
+      "dl-vscode": "In VS Code installieren",
       "dl-label-win": "Für Windows herunterladen", "dl-label-mac": "Für macOS herunterladen",
       "dl-req-win": "Erfordert <b>Windows 10</b> oder neuer · 64-Bit",
       "dl-req-mac": "Erfordert <b>macOS 12</b> (Monterey) oder neuer · Apple Silicon und Intel",
@@ -990,6 +1008,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "Scarica DBScout",
       "download-p": "Installer nativo, senza app store. Il piano gratuito apre già qualsiasi database caricato dall'app del tuo cliente.",
       "download-os-aria": "Sistema operativo",
+      "dl-vscode": "Installa in VS Code",
       "dl-label-win": "Scarica per Windows", "dl-label-mac": "Scarica per macOS",
       "dl-req-win": "Richiede <b>Windows 10</b> o versioni successive · 64-bit",
       "dl-req-mac": "Richiede <b>macOS 12</b> (Monterey) o versioni successive · Apple Silicon e Intel",
@@ -1062,6 +1081,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "download-h2": "下载 DBScout",
       "download-p": "原生安装包,无需应用商店。免费版已经可以打开客户应用加载的任意数据库。",
       "download-os-aria": "操作系统",
+      "dl-vscode": "安装到 VS Code",
       "dl-label-win": "下载 Windows 版", "dl-label-mac": "下载 macOS 版",
       "dl-req-win": "需要 <b>Windows 10</b> 或更新版本 · 64 位",
       "dl-req-mac": "需要 <b>macOS 12</b>(Monterey)或更新版本 · 支持 Apple Silicon 和 Intel",
@@ -1138,6 +1158,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     if (dlLabel) dlLabel.textContent = dict["dl-label-" + os];
     if (dlReq) dlReq.innerHTML = dict["dl-req-" + os];
     if (dlBtn && downloadUrls[os]) dlBtn.setAttribute("href", downloadUrls[os]);
+    if (dlBtn) dlBtn.setAttribute("data-os", os);
   }
 
   // Reads the same latest.json the desktop app's own updater polls, so the

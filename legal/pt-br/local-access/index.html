@@ -90,6 +90,11 @@ recurso do DBScout pode deixar de funcionar. Não garantimos compatibilidade com
 <td>Enquanto o aplicativo está aberto e há um iPhone conectado</td>
 </tr>
 <tr>
+<td><code>xcrun simctl</code> (somente macOS)</td>
+<td>Listar os Simuladores do iOS ligados e encontrar a pasta do contêiner de dados dos aplicativos instalados neles pelo Xcode ou pelo <code>flutter run</code></td>
+<td>Enquanto o aplicativo está aberto; ele verifica os simuladores ligados a cada 2 segundos</td>
+</tr>
+<tr>
 <td>O CLI do assistente de IA (Claude Code, Codex, Gemini)</td>
 <td>Responder às perguntas que você digita no chat (Pro)</td>
 <td>Somente quando você envia uma pergunta</td>
@@ -108,10 +113,16 @@ próprio aplicativo, encontra os bancos de dados SQLite pelo cabeçalho do arqui
 os arquivos que os acompanham, <code>-wal</code>, <code>-shm</code> e <code>-journal</code>, para o seu computador.</li>
 <li><strong>iPhone:</strong> ele lê o contêiner de dados dos aplicativos instalados pelo Xcode ou pelo
 <code>flutter run</code>, por meio do <code>devicectl</code> da Apple.</li>
+<li><strong>Simulador do iOS (somente macOS):</strong> o simulador guarda o contêiner de dados de cada
+aplicativo numa pasta do seu Mac (<code>~/Library/Developer/CoreSimulator/Devices/</code>). O DBScout
+encontra essa pasta pelo <code>simctl</code>, lê dela diretamente os bancos de dados e o arquivo de
+<code>Library/Preferences/</code> dos aplicativos instalados pelo Xcode ou pelo <code>flutter run</code>, e grava as
+alterações (Pro) de volta nos mesmos arquivos. Ele só olha os simuladores ligados, e só dentro
+do contêiner de dados desses aplicativos.</li>
 <li><strong>Gravações (Pro):</strong> quando você edita uma célula, exclui uma linha, executa uma instrução SQL
 de gravação ou permite que o assistente de IA grave, o DBScout altera a sua cópia local do banco
-de dados e <strong>a copia de volta</strong> para o celular, substituindo o arquivo de banco de dados do
-aplicativo.</li>
+de dados e <strong>a copia de volta</strong> para o celular (ou para a pasta do simulador), substituindo o
+arquivo de banco de dados do aplicativo.</li>
 <li><strong>Preferências do aplicativo:</strong> ele lê os arquivos de preferências do aplicativo
 (<code>shared_prefs/</code>, <code>files/datastore/</code>, <code>Library/Preferences/</code>) e, quando você grava ou apaga uma
 (Pro, somente no Android), fecha o aplicativo (<code>am force-stop</code>) antes de gravar. O DBScout não abre o
@@ -164,10 +175,10 @@ sua equipe desenvolvem. Os bancos de dados de um aplicativo podem conter dados p
 usuários dele; você é responsável por tratá-los de acordo com a lei e com os seus contratos com o
 seu empregador ou cliente (consulte a Política de Privacidade, seção 4, e os Termos de Uso).</p>
 <h2>9. Contato</h2>
-<p>Dúvidas sobre este aviso: <strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>.</p>
+<p>Dúvidas sobre este aviso: <strong><a href="mailto:support@dbscout.com.br">support@dbscout.com.br</a></strong>.</p>
 
   </main>
-  <footer>Eloi Brito, doing business as DBScoutTools · eesistemasferramentas@gmail.com · <a href="/legal/pt-br/">Todos os documentos legais</a></footer>
+  <footer>EESystems · support@dbscout.com.br · <a href="/legal/pt-br/">Todos os documentos legais</a></footer>
   <script>document.querySelector("a.lingua").addEventListener("click",function(){try{localStorage.setItem("dbscout.legal.lingua","en")}catch(e){}});</script>
 </body>
 </html>

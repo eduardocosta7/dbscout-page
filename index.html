@@ -261,6 +261,8 @@ footer .links{display:flex;gap:20px}
 footer .links a{color:var(--muted);text-decoration:none;font-size:13px}
 footer .links a:hover{color:var(--text)}
 footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8px}
+footer .copy a.legal{color:inherit;opacity:.7;text-decoration:none}
+footer .copy a.legal:hover{opacity:1;text-decoration:underline}
 
 @media (max-width:860px){
   .navlinks{display:none}
@@ -568,7 +570,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     <a href="#privacidade" data-i18n="nav-privacidade">Privacy</a>
     <a href="#faq" data-i18n="nav-faq">FAQ</a>
   </div>
-  <p class="copy" data-i18n="footer-copy">© 2026 DBScout. A tool for people who debug mobile apps.</p>
+  <p class="copy"><span data-i18n="footer-copy">© 2026 DBScout. A tool for people who debug mobile apps.</span> · <a class="legal" href="/legal/" data-i18n="footer-legal">Legal</a></p>
 </footer>
 
 <script>
@@ -650,6 +652,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Requires <b>Windows 10</b> or newer · 64-bit",
       "dl-req-mac": "Requires <b>macOS 12</b> (Monterey) or newer · Apple Silicon and Intel",
       "footer-copy": "© 2026 DBScout. A tool for people who debug mobile apps.",
+      "footer-legal": "Legal",
       "lang-aria": "Language"
     },
     pt: {
@@ -723,6 +726,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Requer <b>Windows 10</b> ou mais recente · 64-bit",
       "dl-req-mac": "Requer <b>macOS 12</b> (Monterey) ou mais recente · Apple Silicon e Intel",
       "footer-copy": "© 2026 DBScout. Ferramenta pra quem depura apps mobile.",
+      "footer-legal": "Legal",
       "lang-aria": "Idioma"
     },
     es: {
@@ -796,6 +800,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Requiere <b>Windows 10</b> o más reciente · 64-bit",
       "dl-req-mac": "Requiere <b>macOS 12</b> (Monterey) o más reciente · Apple Silicon e Intel",
       "footer-copy": "© 2026 DBScout. Una herramienta para quienes depuran apps móviles.",
+      "footer-legal": "Legal",
       "lang-aria": "Idioma"
     },
     fr: {
@@ -869,6 +874,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Nécessite <b>Windows 10</b> ou plus récent · 64 bits",
       "dl-req-mac": "Nécessite <b>macOS 12</b> (Monterey) ou plus récent · Apple Silicon et Intel",
       "footer-copy": "© 2026 DBScout. Un outil pour ceux qui déboguent des applis mobiles.",
+      "footer-legal": "Mentions légales",
       "lang-aria": "Langue"
     },
     de: {
@@ -942,6 +948,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Erfordert <b>Windows 10</b> oder neuer · 64-Bit",
       "dl-req-mac": "Erfordert <b>macOS 12</b> (Monterey) oder neuer · Apple Silicon und Intel",
       "footer-copy": "© 2026 DBScout. Ein Werkzeug für alle, die mobile Apps debuggen.",
+      "footer-legal": "Rechtliches",
       "lang-aria": "Sprache"
     },
     it: {
@@ -1015,6 +1022,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "Richiede <b>Windows 10</b> o versioni successive · 64-bit",
       "dl-req-mac": "Richiede <b>macOS 12</b> (Monterey) o versioni successive · Apple Silicon e Intel",
       "footer-copy": "© 2026 DBScout. Uno strumento per chi fa il debug di app mobile.",
+      "footer-legal": "Note legali",
       "lang-aria": "Lingua"
     },
     zh: {
@@ -1088,6 +1096,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
       "dl-req-win": "需要 <b>Windows 10</b> 或更新版本 · 64 位",
       "dl-req-mac": "需要 <b>macOS 12</b>(Monterey)或更新版本 · 支持 Apple Silicon 和 Intel",
       "footer-copy": "© 2026 DBScout。为调试移动应用的人打造的工具。",
+      "footer-legal": "法律信息",
       "lang-aria": "语言"
     }
   };

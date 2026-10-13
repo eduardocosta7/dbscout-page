@@ -88,6 +88,11 @@ feature may stop working. We do not guarantee compatibility with any version.</l
 <td>While the app is open and an iPhone is connected</td>
 </tr>
 <tr>
+<td><code>xcrun simctl</code> (macOS only)</td>
+<td>List the iOS Simulators that are running and find the data container folder of the apps installed in them by Xcode or <code>flutter run</code></td>
+<td>While the app is open; it checks for running simulators every 2 seconds</td>
+</tr>
+<tr>
 <td>The AI assistant CLI (Claude Code, Codex, Gemini)</td>
 <td>Answer the questions you type in the chat (Pro)</td>
 <td>Only when you send a question</td>
@@ -106,9 +111,14 @@ finds the SQLite databases by their file header and copies them, with their <cod
 <code>-journal</code> companions, to your computer.</li>
 <li><strong>iPhone:</strong> it reads the data container of apps installed by Xcode or <code>flutter run</code>, through
 Apple&#39;s <code>devicectl</code>.</li>
+<li><strong>iOS Simulator (macOS only):</strong> the simulator keeps each app&#39;s data container in a folder on
+your Mac (<code>~/Library/Developer/CoreSimulator/Devices/</code>). DBScout finds that folder with
+<code>simctl</code>, reads the databases and the <code>Library/Preferences/</code> file of apps installed by Xcode or
+<code>flutter run</code> directly from it, and writes changes (Pro) back to the same files. It only looks
+at simulators that are running, and only inside the data container of those apps.</li>
 <li><strong>Writes (Pro):</strong> when you edit a cell, delete a row, run a writing SQL statement, or let the
 AI assistant write, DBScout changes its local copy of the database and <strong>copies it back</strong> to
-the phone, replacing the app&#39;s database file.</li>
+the phone (or to the simulator&#39;s folder), replacing the app&#39;s database file.</li>
 <li><strong>App preferences:</strong> it reads the app&#39;s preferences files (<code>shared_prefs/</code>, <code>files/datastore/</code>,
 <code>Library/Preferences/</code>) and, when you save or delete one (Pro, Android only), closes the app
 (<code>am force-stop</code>) before writing. The app is not opened again by DBScout; you open it.</li>
@@ -157,10 +167,10 @@ personal data of its users; you are responsible for handling it according to the
 agreements with your employer or client (see the Privacy Policy, section 4, and the Terms of
 Use).</p>
 <h2>9. Contact</h2>
-<p>Questions about this notice: <strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>.</p>
+<p>Questions about this notice: <strong><a href="mailto:support@dbscout.com.br">support@dbscout.com.br</a></strong>.</p>
 
   </main>
-  <footer>Eloi Brito, doing business as DBScoutTools · eesistemasferramentas@gmail.com · <a href="/legal/">All legal documents</a></footer>
+  <footer>EESystems · support@dbscout.com.br · <a href="/legal/">All legal documents</a></footer>
   <script>document.querySelector("a.lingua").addEventListener("click",function(){try{localStorage.setItem("dbscout.legal.lingua","pt")}catch(e){}});</script>
 </body>
 </html>

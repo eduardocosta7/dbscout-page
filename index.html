@@ -257,7 +257,8 @@ section{padding-block:64px}
 /* ---- footer ---- */
 footer{border-top:1px solid var(--border);padding-block:32px 48px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer .brand .name{font-size:13.5px}
-footer .links{display:flex;gap:20px}
+footer .links{display:flex;gap:20px;flex-wrap:wrap}
+footer .links.legal{width:100%;order:2}
 footer .links a{color:var(--muted);text-decoration:none;font-size:13px}
 footer .links a:hover{color:var(--text)}
 footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8px}
@@ -568,6 +569,13 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     <a href="#privacidade" data-i18n="nav-privacidade">Privacy</a>
     <a href="#faq" data-i18n="nav-faq">FAQ</a>
   </div>
+  <div class="links legal">
+    <a href="/legal/terms/" data-i18n="lg-terms">Terms</a>
+    <a href="/legal/privacy/" data-i18n="lg-privacy">Privacy Policy</a>
+    <a href="/legal/subscription/" data-i18n="lg-subscription">Subscription</a>
+    <a href="/legal/local-access/" data-i18n="lg-local">Local access</a>
+    <a href="/legal/license/" data-i18n="lg-license">License</a>
+  </div>
   <p class="copy" data-i18n="footer-copy">© 2026 DBScout. A tool for people who debug mobile apps.</p>
 </footer>
 
@@ -581,6 +589,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
   var T = {
     en: {
       "nav-recursos": "Features", "nav-privacidade": "Privacy", "nav-precos": "Pricing", "nav-baixar": "Download", "nav-faq": "FAQ",
+     "lg-terms": "Terms", "lg-privacy": "Privacy Policy", "lg-subscription": "Subscription", "lg-local": "Local access", "lg-license": "License", "lg-title": "Legal",
       "hero-eyebrow": "For mobile app debugging",
       "hero-h1": "The SQLite database inside your client's app, without leaving <code>adb</code>",
       "hero-lede": "Plug in the Android or the iPhone, open any database the app loads, and browse it table by table — live, while the app runs. No copying the <code>.db</code> out, no DB Browser, no <code>adb pull</code> every time a column changes.",
@@ -654,6 +663,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     pt: {
       "nav-recursos": "Recursos", "nav-privacidade": "Privacidade", "nav-precos": "Preços", "nav-baixar": "Baixar", "nav-faq": "Dúvidas",
+     "lg-terms": "Termos", "lg-privacy": "Privacidade", "lg-subscription": "Assinatura", "lg-local": "Acesso local", "lg-license": "Licença", "lg-title": "Legal",
       "hero-eyebrow": "Para quem debuga apps mobile",
       "hero-h1": "O SQLite dentro do app do seu cliente, sem sair do <code>adb</code>",
       "hero-lede": "Plugue o Android ou o iPhone, abra qualquer banco que o app carrega e navegue tabela por tabela — ao vivo, com o app rodando. Sem copiar o <code>.db</code> pra fora, sem DB Browser, sem <code>adb pull</code> toda vez que uma coluna muda.",
@@ -727,6 +737,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     es: {
       "nav-recursos": "Funciones", "nav-privacidade": "Privacidad", "nav-precos": "Precios", "nav-baixar": "Descargar", "nav-faq": "Preguntas",
+     "lg-terms": "Términos", "lg-privacy": "Privacidad", "lg-subscription": "Suscripción", "lg-local": "Acceso local", "lg-license": "Licencia", "lg-title": "Legal",
       "hero-eyebrow": "Para quien depura apps móviles",
       "hero-h1": "La base SQLite dentro de la app de tu cliente, sin salir de <code>adb</code>",
       "hero-lede": "Conecta el Android o el iPhone, abre cualquier base que la app cargue y navégala tabla por tabla — en vivo, con la app en ejecución. Sin copiar el <code>.db</code>, sin DB Browser, sin <code>adb pull</code> cada vez que cambia una columna.",
@@ -800,6 +811,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     fr: {
       "nav-recursos": "Fonctionnalités", "nav-privacidade": "Confidentialité", "nav-precos": "Tarifs", "nav-baixar": "Télécharger", "nav-faq": "Questions",
+     "lg-terms": "Conditions", "lg-privacy": "Confidentialité", "lg-subscription": "Abonnement", "lg-local": "Accès local", "lg-license": "Licence", "lg-title": "Mentions légales",
       "hero-eyebrow": "Pour le débogage d'applications mobiles",
       "hero-h1": "La base SQLite dans l'appli de votre client, sans quitter <code>adb</code>",
       "hero-lede": "Branchez l'Android ou l'iPhone, ouvrez n'importe quelle base que l'appli charge et parcourez-la table par table — en direct, pendant que l'appli tourne. Plus besoin de copier le <code>.db</code>, ni de DB Browser, ni d'<code>adb pull</code> à chaque colonne modifiée.",
@@ -873,6 +885,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     de: {
       "nav-recursos": "Funktionen", "nav-privacidade": "Datenschutz", "nav-precos": "Preise", "nav-baixar": "Herunterladen", "nav-faq": "Fragen",
+     "lg-terms": "Bedingungen", "lg-privacy": "Datenschutz", "lg-subscription": "Abonnement", "lg-local": "Lokaler Zugriff", "lg-license": "Lizenz", "lg-title": "Rechtliches",
       "hero-eyebrow": "Für das Debugging mobiler Apps",
       "hero-h1": "Die SQLite-Datenbank in der App Ihres Kunden, ohne <code>adb</code> zu verlassen",
       "hero-lede": "Android oder iPhone anschließen, jede Datenbank öffnen, die die App lädt, und Tabelle für Tabelle durchsehen — live, während die App läuft. Keine <code>.db</code> mehr kopieren, kein DB Browser, kein <code>adb pull</code> bei jeder Spaltenänderung.",
@@ -946,6 +959,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     it: {
       "nav-recursos": "Funzionalità", "nav-privacidade": "Privacy", "nav-precos": "Prezzi", "nav-baixar": "Scarica", "nav-faq": "Domande",
+     "lg-terms": "Termini", "lg-privacy": "Privacy", "lg-subscription": "Abbonamento", "lg-local": "Accesso locale", "lg-license": "Licenza", "lg-title": "Note legali",
       "hero-eyebrow": "Per il debug di app mobile",
       "hero-h1": "Il database SQLite dentro l'app del tuo cliente, senza uscire da <code>adb</code>",
       "hero-lede": "Collega l'Android o l'iPhone, apri qualsiasi database caricato dall'app e sfoglialo tabella per tabella — in tempo reale, con l'app in esecuzione. Niente più copia del <code>.db</code>, niente DB Browser, niente <code>adb pull</code> ogni volta che cambia una colonna.",
@@ -1019,6 +1033,7 @@ footer .copy{color:var(--muted);font-size:12.5px;width:100%;order:3;margin-top:8
     },
     zh: {
       "nav-recursos": "功能", "nav-privacidade": "隐私", "nav-precos": "价格", "nav-baixar": "下载", "nav-faq": "常见问题",
+     "lg-terms": "条款", "lg-privacy": "隐私政策", "lg-subscription": "订阅", "lg-local": "本地访问", "lg-license": "许可", "lg-title": "法律信息",
       "hero-eyebrow": "专为移动应用调试打造",
       "hero-h1": "SQLite 数据库就在客户应用内部,不必离开 <code>adb</code>",
       "hero-lede": "连接 Android 或 iPhone,打开应用加载的任意数据库,像浏览表格一样逐表查看——应用运行时实时更新。不用把 <code>.db</code> 复制出来,不用 DB Browser,列一变就得 <code>adb pull</code> 的日子也过去了。",

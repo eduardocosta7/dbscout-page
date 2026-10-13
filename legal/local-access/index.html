@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Access Notice · DBScout</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="alternate" hreflang="en" href="https://dbscout.com.br/legal/local-access/">
+  <link rel="alternate" hreflang="pt-BR" href="https://dbscout.com.br/legal/pt-br/local-access/">
+  <script>(function(){var k="dbscout.legal.lingua",a="en",q=null;try{q=localStorage.getItem(k)}catch(e){}if(q!=="en"&&q!=="pt"){var n=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();q=n.indexOf("pt")===0?"pt":"en"}if(q!==a)location.replace("/legal/pt-br/local-access/"+location.hash)})();</script>
+  <style>
+:root{--bg:#FBFAF8;--surface:#FFFFFF;--text:#1C1A17;--muted:#5E5A55;--border:#E7E4E0;--accent:#B3261E;--code:#F3F1EE;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#191817;--surface:#212020;--text:#EDEBE8;--muted:#A8A39D;--border:#302E2C;--accent:#F2867E;--code:#2A2927;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#191817;--surface:#212020;--text:#EDEBE8;--muted:#A8A39D;--border:#302E2C;--accent:#F2867E;--code:#2A2927;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header,main,footer{max-width:820px;margin:0 auto;padding:0 16px}
+header{padding-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+header a.marca{font-weight:800;color:var(--text);text-decoration:none;margin-right:auto}
+header a.lingua{font-size:14px;font-weight:600;border:1px solid var(--border);border-radius:999px;padding:2px 12px;text-decoration:none}
+nav{width:100%;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}
+nav a[aria-current="page"]{color:var(--text);font-weight:600}
+main{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px 28px 28px;margin-top:20px}
+h1{font-size:30px;line-height:1.25;margin:24px 0 8px}
+h2{font-size:20px;margin:32px 0 8px;padding-top:8px;border-top:1px solid var(--border)}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 5px;border-radius:5px;font-size:.9em;overflow-wrap:anywhere}
+blockquote{margin:16px 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--code);border-radius:6px}
+blockquote p{margin:0}
+.tabela{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--border);padding:6px 10px;text-align:left;vertical-align:top}
+ul.indice{padding-left:20px}
+footer{color:var(--muted);font-size:13px;padding:24px 16px 40px}
+@media (max-width:600px){main{padding:4px 16px 20px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+  <header>
+    <a class="marca" href="/">DBScout</a>
+    <a class="lingua" href="/legal/pt-br/local-access/" hreflang="pt-BR" lang="pt-BR">Português</a>
+    <nav aria-label="Legal documents">
+      <a href="/legal/terms/">Terms of Use</a>
+      <a href="/legal/privacy/">Privacy Policy</a>
+      <a href="/legal/local-access/" aria-current="page">Local Access Notice</a>
+      <a href="/legal/subscription/">Subscription Policy</a>
+      <a href="/legal/license/">End User License Agreement</a>
+    </nav>
+  </header>
+  <main>
+<h1>DBScout Local Access Notice</h1>
+<p><strong>Effective date:</strong> October 13, 2026</p>
+<p>DBScout is a developer tool. To show you the databases of the apps you are building, it uses
+tools that are already part of mobile development — <code>adb</code> for Android, Xcode&#39;s <code>devicectl</code> for
+iPhone — and works with files on your computer and on your phone. This notice says exactly what
+it does, so you can decide whether to use it on a given computer, phone or project.</p>
+<h2>1. Nothing here is mandatory, and we are independent</h2>
+<ul>
+<li><strong>You decide.</strong> DBScout only runs the tools below if they are on your computer, and it only
+downloads or configures one after <strong>you click</strong>. You can decline, uninstall them, or use your
+own copies. DBScout keeps working, with fewer features, without the optional ones.</li>
+<li><strong>These tools belong to others.</strong> <code>adb</code> and the USB driver are Google&#39;s, Xcode and <code>devicectl</code>
+are Apple&#39;s, the AI command-line tools are Anthropic&#39;s, OpenAI&#39;s and Google&#39;s. <strong>We have no
+partnership, sponsorship or agreement with any of them, and none of them guarantees, supports
+or is responsible for DBScout.</strong> We use them as any developer can, under the terms their owners
+publish, and those terms govern your use of them.</li>
+<li><strong>We do not control them.</strong> If an owner changes, restricts or discontinues a tool, a DBScout
+feature may stop working. We do not guarantee compatibility with any version.</li>
+</ul>
+<h2>2. What DBScout runs on your computer</h2>
+<div class="tabela"><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>What for</th>
+<th>When</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>adb</code> (Android Debug Bridge)</td>
+<td>List the connected Android phones, list the debuggable apps, copy their databases, write changes back</td>
+<td>While the app is open and a phone is connected; it checks for phones every 2 seconds</td>
+</tr>
+<tr>
+<td><code>xcrun devicectl</code> (macOS only)</td>
+<td>List the iPhone apps installed by Xcode or <code>flutter run</code>, copy their data container files, write changes back</td>
+<td>While the app is open and an iPhone is connected</td>
+</tr>
+<tr>
+<td>The AI assistant CLI (Claude Code, Codex, Gemini)</td>
+<td>Answer the questions you type in the chat (Pro)</td>
+<td>Only when you send a question</td>
+</tr>
+</tbody></table></div>
+<p>DBScout prefers the <code>adb</code> you already have (Android SDK, Homebrew or <code>PATH</code>). It uses its own
+copy only if you have none and you clicked to install it.</p>
+<p>All of these run as <strong>your user</strong>, without a visible terminal window, and only with the
+arguments DBScout itself builds.</p>
+<h2>3. What DBScout does on your phone</h2>
+<ul>
+<li><strong>Android:</strong> it uses <code>adb shell run-as &lt;package&gt;</code>, which only works for apps installed as
+<strong>debuggable</strong> (debug builds). Release builds from the store cannot be read this way, and
+DBScout does not try to bypass this. It lists the files inside the app&#39;s own private folder,
+finds the SQLite databases by their file header and copies them, with their <code>-wal</code>, <code>-shm</code> and
+<code>-journal</code> companions, to your computer.</li>
+<li><strong>iPhone:</strong> it reads the data container of apps installed by Xcode or <code>flutter run</code>, through
+Apple&#39;s <code>devicectl</code>.</li>
+<li><strong>Writes (Pro):</strong> when you edit a cell, delete a row, run a writing SQL statement, or let the
+AI assistant write, DBScout changes its local copy of the database and <strong>copies it back</strong> to
+the phone, replacing the app&#39;s database file.</li>
+<li><strong>App preferences:</strong> it reads the app&#39;s preferences files (<code>shared_prefs/</code>, <code>files/datastore/</code>,
+<code>Library/Preferences/</code>) and, when you save or delete one (Pro, Android only), closes the app
+(<code>am force-stop</code>) before writing. The app is not opened again by DBScout; you open it.</li>
+</ul>
+<p>DBScout does not root, jailbreak, install anything on, or change the settings of your phone.</p>
+<h2>4. Changes that ask for your permission</h2>
+<p>Some components need administrator rights. DBScout asks the operating system, and only after you
+click:</p>
+<ul>
+<li><strong>Windows:</strong> the Google USB driver, installed with <code>pnputil</code> through the system&#39;s UAC prompt.</li>
+<li><strong>Linux:</strong> a <code>udev</code> rule that lets your user talk to Android phones, installed through
+<code>pkexec</code>.</li>
+</ul>
+<h2>5. Files DBScout writes outside its own folder</h2>
+<p>Only when you click to connect your editor&#39;s AI assistants to DBScout (extension), DBScout adds
+<strong>one entry named <code>dbscout</code></strong> to their configuration files: <code>~/.claude.json</code>,
+<code>~/.codex/config.toml</code> and <code>~/.gemini/config/mcp_config.json</code>. Nothing else in those files is
+changed. GitHub Copilot is connected through the editor&#39;s own API, without a file.</p>
+<p>Exports (CSV, Excel, TXT) are written where you choose in the save dialog.</p>
+<h2>6. The local AI server</h2>
+<p>While DBScout is open, it runs a small server on <code>127.0.0.1</code> (your computer only) that gives
+AI assistants access to the databases and app preferences on screen. It needs a random token,
+created every time DBScout opens, and it cannot be reached from the network. On the free plan it
+refuses all requests.</p>
+<h2>7. Risks you accept</h2>
+<ul>
+<li><strong>Writing to a database the app is using can corrupt it.</strong> If the app is running on the phone
+and writes at the same time DBScout copies the database back, one of the two writes may be lost
+or the file may be damaged. Close the app on the phone before editing, and keep a copy of
+data you cannot lose.</li>
+<li><strong>Saving or deleting a preference closes the app</strong> on the phone. Anything the app had not saved yet is
+lost, as when the system closes it.</li>
+<li><strong>Writes cannot be undone by DBScout,</strong> except for the copy kept before the AI assistant&#39;s first
+write in a session. Deleted rows are deleted.</li>
+<li><strong>What the AI reads goes to its vendor.</strong> See the Privacy Policy, section 3.7.</li>
+<li><strong>Two different versions of <code>adb</code></strong> on the same computer stop each other&#39;s server. This is how
+<code>adb</code> works, not a DBScout defect.</li>
+</ul>
+<p><strong>You use DBScout at your own risk.</strong> To the maximum extent permitted by law, we are not liable for
+data loss, corruption or any damage resulting from these operations, as set out in the EULA
+(sections 8 and 9).</p>
+<h2>8. Use it only where you are allowed</h2>
+<p>Use DBScout only on phones, apps and databases that you own or are authorized to inspect —
+typically, debug builds of apps you or your team develop. The databases of an app may contain
+personal data of its users; you are responsible for handling it according to the law and to your
+agreements with your employer or client (see the Privacy Policy, section 4, and the Terms of
+Use).</p>
+<h2>9. Contact</h2>
+<p>Questions about this notice: <strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>.</p>
+
+  </main>
+  <footer>Eloi Brito, doing business as DBScoutTools · eesistemasferramentas@gmail.com · <a href="/legal/">All legal documents</a></footer>
+  <script>document.querySelector("a.lingua").addEventListener("click",function(){try{localStorage.setItem("dbscout.legal.lingua","pt")}catch(e){}});</script>
+</body>
+</html>

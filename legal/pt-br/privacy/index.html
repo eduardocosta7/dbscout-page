@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de Privacidade · DBScout</title>
+  <link rel="icon" href="/assets/favicon.png">
+  <link rel="alternate" hreflang="en" href="https://dbscout.com.br/legal/privacy/">
+  <link rel="alternate" hreflang="pt-BR" href="https://dbscout.com.br/legal/pt-br/privacy/">
+  <script>(function(){var k="dbscout.legal.lingua",a="pt",q=null;try{q=localStorage.getItem(k)}catch(e){}if(q!=="en"&&q!=="pt"){var n=((navigator.languages&&navigator.languages[0])||navigator.language||"").toLowerCase();q=n.indexOf("pt")===0?"pt":"en"}if(q!==a)location.replace("/legal/privacy/"+location.hash)})();</script>
+  <style>
+:root{--bg:#FBFAF8;--surface:#FFFFFF;--text:#1C1A17;--muted:#5E5A55;--border:#E7E4E0;--accent:#B3261E;--code:#F3F1EE;color-scheme:light}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#191817;--surface:#212020;--text:#EDEBE8;--muted:#A8A39D;--border:#302E2C;--accent:#F2867E;--code:#2A2927;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#191817;--surface:#212020;--text:#EDEBE8;--muted:#A8A39D;--border:#302E2C;--accent:#F2867E;--code:#2A2927;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header,main,footer{max-width:820px;margin:0 auto;padding:0 16px}
+header{padding-top:28px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+header a.marca{font-weight:800;color:var(--text);text-decoration:none;margin-right:auto}
+header a.lingua{font-size:14px;font-weight:600;border:1px solid var(--border);border-radius:999px;padding:2px 12px;text-decoration:none}
+nav{width:100%;display:flex;flex-wrap:wrap;gap:6px 14px;font-size:14px}
+nav a{color:var(--muted);text-decoration:none}
+nav a[aria-current="page"]{color:var(--text);font-weight:600}
+main{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:8px 28px 28px;margin-top:20px}
+h1{font-size:30px;line-height:1.25;margin:24px 0 8px}
+h2{font-size:20px;margin:32px 0 8px;padding-top:8px;border-top:1px solid var(--border)}
+a{color:var(--accent)}
+code{background:var(--code);padding:1px 5px;border-radius:5px;font-size:.9em;overflow-wrap:anywhere}
+blockquote{margin:16px 0;padding:12px 16px;border-left:3px solid var(--accent);background:var(--code);border-radius:6px}
+blockquote p{margin:0}
+.tabela{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{border:1px solid var(--border);padding:6px 10px;text-align:left;vertical-align:top}
+ul.indice{padding-left:20px}
+footer{color:var(--muted);font-size:13px;padding:24px 16px 40px}
+@media (max-width:600px){main{padding:4px 16px 20px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+  <header>
+    <a class="marca" href="/">DBScout</a>
+    <a class="lingua" href="/legal/privacy/" hreflang="en" lang="en">English</a>
+    <nav aria-label="Documentos legais">
+      <a href="/legal/pt-br/terms/">Termos de Uso</a>
+      <a href="/legal/pt-br/privacy/" aria-current="page">Política de Privacidade</a>
+      <a href="/legal/pt-br/local-access/">Aviso de Acesso Local</a>
+      <a href="/legal/pt-br/subscription/">Política de Assinatura</a>
+      <a href="/legal/pt-br/license/">Contrato de Licença de Usuário Final</a>
+    </nav>
+  </header>
+  <main>
+<h1>Política de Privacidade do DBScout</h1>
+<p><strong>Data de vigência:</strong> 13 de outubro de 2026</p>
+<p>Esta política explica quais dados o DBScout manipula, o que fica no seu computador, o que sai
+dele, para onde vai e por quê. Ela abrange o aplicativo de desktop do DBScout (Windows, macOS e
+Linux), a extensão do DBScout para o VS Code e editores compatíveis (como o Antigravity) e o site
+<code>dbscout.com.br</code>.</p>
+<p>O DBScout é feito por <strong>Eloi Brito, com o nome comercial DBScoutTools</strong> (&quot;nós&quot;). Contato:
+<strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>. Esta política foi redigida para atender aos requisitos das
+leis de privacidade federais e estaduais dos EUA (inclusive a California Consumer Privacy Act,
+conforme alterada pela CPRA, e a California Online Privacy Protection Act), bem como do GDPR da
+UE e do Reino Unido e da LGPD brasileira.</p>
+<h2>1. A versão resumida</h2>
+<ul>
+<li><strong>Nenhuma telemetria.</strong> Não coletamos estatísticas de uso, dados analíticos, despejos de falha
+(crash dumps) com os seus dados, nem identificadores de publicidade.</li>
+<li><strong>Os seus bancos de dados ficam no seu computador.</strong> Caminhos de arquivo, conteúdo de bancos de
+dados, preferências dos aplicativos, nomes de tabelas, nomes de pacotes e o SQL que você escreve nunca são enviados a nós.</li>
+<li><strong>Quatro conexões do produto, nenhuma delas para os seus dados:</strong> a verificação de licença, o
+atualizador do desktop, o relato de erro do desktop (higienizado antes de sair) e os downloads
+que você solicita. Cada uma é descrita abaixo.</li>
+<li><strong>O assistente de IA é a única exceção, e é você quem o aciona.</strong> Quando você faz uma pergunta
+ao assistente, a ferramenta de IA no seu computador (Claude Code, Codex ou Gemini) envia a sua
+pergunta e o que ela lê dos bancos de dados e das preferências dos aplicativos ao respectivo
+fornecedor, com a <strong>sua própria
+conta</strong> nesse fornecedor. Nós não recebemos nada disso.</li>
+</ul>
+<h2>2. Dados que ficam no seu computador</h2>
+<p>O DBScout funciona localmente. Para lhe mostrar um banco de dados, ele copia o arquivo do banco
+(e os arquivos que o acompanham, <code>-wal</code>, <code>-shm</code> ou <code>-journal</code>) do celular, ou abre o arquivo
+<code>.db</code> que você escolheu, para a pasta de dados do DBScout no seu computador. Ficam guardados ali,
+e somente ali:</p>
+<ul>
+<li>cópias (retratos) dos bancos de dados e dos arquivos de preferências que você abre, mantidas para evitar copiá-los de novo
+pelo cabo;</li>
+<li>a cópia de um banco de dados feita antes da primeira gravação do assistente de IA, para que
+você possa restaurá-lo;</li>
+<li>as suas abas abertas, o SQL que você escreve e as suas preferências;</li>
+<li>os relatos de erro aguardando envio (somente no desktop, ver a seção 3.3);</li>
+<li>as ferramentas de assistente de IA que o DBScout instalou para você, e o <code>adb</code>, se você o
+instalou pelo DBScout.</li>
+</ul>
+<p>A sua <strong>chave de licença</strong> é guardada no armazenamento seguro do seu sistema operacional
+(Keychain no macOS, Gerenciador de Credenciais no Windows, Secret Service no Linux), e não em um
+arquivo comum.</p>
+<p>Você pode apagar tudo isso a qualquer momento, desinstalando o DBScout e apagando a pasta de dados
+dele. Não podemos ver, acessar nem apagar esses dados por você: eles nunca chegam até nós.</p>
+<h2>3. Dados que saem do seu computador</h2>
+<h3>3.1 Verificação de licença (somente se você informou uma chave de licença)</h3>
+<p>Quando você ativa o DBScout Pro, e depois aproximadamente a cada 6 horas, o DBScout envia ao nosso
+servidor de licenças:</p>
+<ul>
+<li>a sua <strong>chave de licença</strong>;</li>
+<li>um <strong>hash irreversível da identidade do seu computador</strong> (ele identifica este computador para a
+licença sem revelar o nome, o número de série ou o usuário dele).</li>
+</ul>
+<p>O servidor de licenças roda no <strong>Cloudflare Workers</strong> (Cloudflare, Inc.) e consulta a <strong>Polar</strong>
+(Polar Software, Inc., nossa fornecedora de pagamentos e assinaturas) para saber se a chave é
+válida. A resposta é um token assinado vinculado a este computador. Para evitar o abuso do
+período de teste gratuito, o servidor mantém um registro por computador que iniciou um teste: o
+hash do computador e o ID de cliente na Polar.</p>
+<p>Se você usa o plano gratuito sem chave, o DBScout não se comunica com o servidor de licenças.</p>
+<h3>3.2 Atualizações (aplicativo de desktop)</h3>
+<p>O aplicativo de desktop verifica se há nova versão ao abrir e a cada 24 horas. Ele baixa um
+pequeno arquivo <code>latest.json</code> e, se você aceitar, o instalador assinado, do armazenamento
+<strong>Cloudflare R2</strong>. Nada a seu respeito é enviado além do que qualquer download revela (o seu
+endereço IP e a versão do aplicativo). A extensão é atualizada pelo marketplace do seu editor, nos
+termos dele.</p>
+<h3>3.3 Relatos de erro (aplicativo de desktop)</h3>
+<p>Quando o aplicativo de desktop encontra um defeito (um erro interno, uma falha, uma tela que não
+foi desenhada), ele registra um breve relato de erro: a versão do aplicativo, o sistema
+operacional, qual parte do programa falhou, a mensagem de erro, a localização no código-fonte e
+um breve rastreamento de pilha (stack trace).</p>
+<p>Antes de um relato ser armazenado ou enviado, o DBScout o <strong>higieniza</strong>: caminhos absolutos de
+arquivo, nomes de pacotes, nomes de arquivos de banco de dados e endereços de e-mail são
+substituídos por marcadores como <code>&lt;path&gt;</code>. O conteúdo das células e o texto do seu SQL nunca
+fazem parte de um relato. Situações esperadas (um cabo desconectado, um aplicativo não
+depurável, um erro de digitação no seu SQL) não são relatadas.</p>
+<p>Os relatos são enviados ao <strong>Google Firebase (Cloud Firestore)</strong>, projeto <code>db-inspector-8f280</code>,
+com um login anônimo que não carrega conta, nome nem e-mail. Nós os usamos somente para encontrar
+e corrigir defeitos, e os apagamos quando deixam de ser úteis para isso. A extensão não envia
+relatos de erro.</p>
+<h3>3.4 Downloads que você solicita</h3>
+<p>Quando você clica para instalar um componente ou um assistente de IA, o DBScout o baixa do
+endereço oficial do fornecedor: o <code>adb</code> e o driver USB do Android, do Google (<code>dl.google.com</code>); o
+CLI do Claude Code, da Anthropic; o CLI do Codex, da OpenAI. Antes que qualquer coisa seja
+executada, o DBScout confere o download com um hash fixado e, no macOS, com a assinatura do
+fornecedor. Nada é enviado.</p>
+<h3>3.5 Fontes</h3>
+<p>A tela do DBScout carrega as suas fontes tipográficas do <strong>Google Fonts</strong> (<code>fonts.googleapis.com</code>,
+<code>fonts.gstatic.com</code>). Como em qualquer requisição de fonte, o Google vê o seu endereço IP. Nenhum
+outro conteúdo é carregado da internet pela tela.</p>
+<h3>3.6 Pagamentos</h3>
+<p>As assinaturas são vendidas e cobradas pela <strong>Polar</strong>, que atua como comerciante registrado
+(merchant of record). A Polar coleta o seu nome, e-mail, endereço de cobrança e dados de
+pagamento para processar o pagamento e enviar a sua chave de licença. Vemos o seu e-mail e a
+situação da sua assinatura no painel da Polar; nunca vemos o número completo do seu cartão. A
+política de privacidade da Polar se aplica a esses dados.</p>
+<h3>3.7 O assistente de IA (Pro)</h3>
+<p>O chat de IA executa a própria ferramenta de linha de comando do assistente no seu computador,
+com a <strong>sua conta</strong> no respectivo fornecedor (Anthropic para o Claude Code, OpenAI para o Codex,
+Google para o Gemini). Quando você faz uma pergunta, essa ferramenta envia ao fornecedor a
+pergunta e os dados que ela lê por meio do DBScout (nomes de tabelas, colunas, linhas,
+preferências dos aplicativos). Esses
+dados são regidos pelo <strong>seu contrato com o fornecedor</strong>, e não por nós. O DBScout nunca vê nem
+armazena as suas credenciais junto ao fornecedor.</p>
+<p>O assistente chega aos seus bancos de dados por meio de um servidor que o DBScout executa
+<strong>somente no seu computador</strong> (<code>127.0.0.1</code>), protegido por um token aleatório que muda toda vez
+que o DBScout é aberto. Ele não pode ser alcançado a partir de outros computadores. Se você
+conectar outras ferramentas de IA do seu editor ao DBScout, o mesmo vale para elas: os dados que
+elas leem vão para o respectivo fornecedor, com a sua conta.</p>
+<p><strong>Não pergunte ao assistente sobre um banco de dados que você não tem permissão para compartilhar
+com esse fornecedor.</strong></p>
+<h2>4. Dados pessoais dentro dos seus bancos de dados</h2>
+<p>Os bancos de dados que você inspeciona podem conter dados pessoais de outras pessoas (por
+exemplo, dos usuários do aplicativo que você está desenvolvendo). Em relação a esses dados,
+<strong>você (ou o seu empregador ou cliente) é o controlador</strong>: você decide o que abrir, editar,
+exportar ou mostrar a um assistente de IA. O DBScout apenas os trata no seu computador, sob o seu
+comando, e não os envia a nós.</p>
+<p>Se você exportar dados para CSV, Excel ou TXT, cabe a você proteger o arquivo exportado.</p>
+<h2>5. Ferramentas de terceiros são escolha sua</h2>
+<p>O DBScout não exige que você use nenhuma ferramenta de terceiros. O <code>adb</code>, o Xcode, os
+assistentes de IA e o seu editor são distribuídos pelos respectivos titulares (Google, Apple,
+Anthropic, OpenAI, Microsoft e outros), com os quais <strong>não temos parceria nem acordo de
+compartilhamento de dados</strong>. Quando você opta por usá-los, eles tratam dados segundo as <strong>suas
+próprias políticas de privacidade</strong>, e não esta, e não somos responsáveis por eles.</p>
+<h2>6. Bases legais (UE, Reino Unido e Brasil)</h2>
+<p>Para usuários no Espaço Econômico Europeu, no Reino Unido e no Brasil, tratamos os poucos dados
+que chegam até nós com base no seguinte:</p>
+<ul>
+<li><strong>Verificação de licença e pagamentos:</strong> execução do contrato (a sua assinatura).</li>
+<li><strong>Registro contra abuso do período de teste:</strong> nosso legítimo interesse em oferecer um único
+teste gratuito por computador.</li>
+<li><strong>Relatos de erro:</strong> nosso legítimo interesse em corrigir defeitos, limitado pela higienização
+descrita acima.</li>
+<li><strong>Downloads e atualizações:</strong> execução do contrato (fornecimento do software que você usa).</li>
+</ul>
+<h2>7. Quem recebe dados, e onde</h2>
+<div class="tabela"><table>
+<thead>
+<tr>
+<th>Fornecedor</th>
+<th>O quê</th>
+<th>Onde</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Cloudflare, Inc.</td>
+<td>Servidor de licenças, registro de testes, arquivos de atualização</td>
+<td>Rede global</td>
+</tr>
+<tr>
+<td>Polar Software, Inc.</td>
+<td>Pagamento, assinatura, chaves de licença</td>
+<td>Estados Unidos</td>
+</tr>
+<tr>
+<td>Google LLC (Firebase)</td>
+<td>Relatos de erro higienizados (desktop)</td>
+<td>Estados Unidos</td>
+</tr>
+<tr>
+<td>Google LLC (Fonts)</td>
+<td>Requisições de fontes</td>
+<td>Rede global</td>
+</tr>
+<tr>
+<td>Anthropic, OpenAI, Google</td>
+<td>Somente o que <strong>você</strong> pergunta ao assistente de IA, com a <strong>sua</strong> conta</td>
+<td>Conforme o seu contrato com o fornecedor</td>
+</tr>
+</tbody></table></div>
+<p>Alguns desses fornecedores estão fora do Brasil e do Espaço Econômico Europeu. Eles tratam os
+dados segundo as suas próprias salvaguardas (como cláusulas contratuais padrão). Não vendemos,
+alugamos nem compartilhamos dados com mais ninguém, e não os usamos para publicidade.</p>
+<h2>8. Direitos de privacidade nos estados dos EUA (Califórnia e outros estados)</h2>
+<p>Nos últimos 12 meses, coletamos, somente de assinantes: <strong>identificadores</strong> (chave de licença, um
+hash da identidade do computador, ID de cliente na Polar, e-mail por meio da Polar) e
+<strong>informações comerciais</strong> (situação da assinatura), para as finalidades da seção 3. De usuários
+do desktop, também podemos receber <strong>relatos de erro</strong> higienizados (versão do aplicativo,
+sistema operacional e detalhes técnicos). Não coletamos informações pessoais sensíveis,
+geolocalização precisa nem dados biométricos.</p>
+<p><strong>Não vendemos nem compartilhamos informações pessoais</strong>, no sentido em que &quot;vender&quot; (&quot;sell&quot;) e
+&quot;compartilhar&quot; (&quot;share&quot;) são definidos pela CCPA/CPRA, e não o fizemos nos últimos 12 meses. Não
+as usamos para publicidade comportamental entre contextos nem para criação de perfis. Não
+coletamos intencionalmente informações pessoais de consumidores menores de 16 anos.</p>
+<p>Se você reside na Califórnia, no Colorado, em Connecticut, na Virgínia, em Utah, no Texas, no
+Oregon ou em outro estado com lei de privacidade do consumidor, pode ter o direito de <strong>saber,
+acessar, corrigir, excluir e portar</strong> as suas informações pessoais, de <strong>optar por não
+participar</strong> (opt-out) de venda, compartilhamento, publicidade direcionada e criação de perfis (o
+que não fazemos), de recorrer da nossa decisão e de <strong>não ser discriminado</strong> por exercer esses
+direitos. Envie as solicitações para <strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>; verificaremos a sua
+solicitação confrontando o e-mail ou a chave de licença que mantemos e responderemos em até 45
+dias. Um agente autorizado pode agir em seu nome, mediante a sua permissão assinada.</p>
+<p><strong>Do Not Track e Global Privacy Control:</strong> o DBScout não rastreia você entre sites ou aplicativos,
+de modo que não há nada para esses sinais desativarem.</p>
+<h2>9. Seus direitos (UE, Reino Unido, Brasil e outros lugares)</h2>
+<p>Nos termos do GDPR, do UK GDPR, da LGPD brasileira e de leis semelhantes, você pode nos pedir que
+confirmemos se mantemos dados a seu respeito, e que lhe demos acesso a eles, os corrijamos,
+excluamos ou portemos, ou pode se opor ao tratamento deles. Escreva para
+<strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong>. Como quase nada a seu respeito chega até nós, a resposta
+costuma ser curta: a chave de licença e o hash do computador (se você assinou) e o cadastro de
+cliente na Polar. Solicitações sobre dados de pagamento podem ser encaminhadas à Polar.</p>
+<p>Você também pode apresentar reclamação à sua autoridade de proteção de dados (no Brasil, a ANPD).</p>
+<h2>10. Segurança</h2>
+<p>O DBScout não guarda segredos dentro do programa, armazena a sua chave de licença no
+armazenamento seguro do sistema, assina os seus tokens de licença e as suas atualizações, confere
+cada download com um hash fixado e mantém o servidor de IA local e protegido por token. Nenhum
+sistema é perfeitamente seguro; se tomarmos conhecimento de um incidente que afete os seus dados,
+notificaremos você e as autoridades conforme exigido por lei.</p>
+<h2>11. Crianças</h2>
+<p>O DBScout é uma ferramenta para desenvolvedores de software. Não é direcionado a crianças, e não
+coletamos intencionalmente informações pessoais de crianças menores de 13 anos (conforme definido
+pela Children&#39;s Online Privacy Protection Act dos EUA, lei de proteção à privacidade on-line de
+crianças) ou menores de 16 anos. Se você acredita que uma criança nos forneceu informações
+pessoais, escreva para nós e nós as apagaremos.</p>
+<h2>12. Alterações</h2>
+<p>Publicaremos qualquer alteração desta política em <code>https://dbscout.com.br/legal/privacy/</code>
+com nova data de vigência, e descreveremos as alterações significativas nas notas de versão. As
+alterações nunca se aplicam retroativamente a dados já coletados sem o seu consentimento, quando
+a lei assim exigir.</p>
+<h2>13. Contato</h2>
+<p>Eloi Brito, com o nome comercial DBScoutTools — <strong><a href="mailto:eesistemasferramentas@gmail.com">eesistemasferramentas@gmail.com</a></strong></p>
+
+  </main>
+  <footer>Eloi Brito, doing business as DBScoutTools · eesistemasferramentas@gmail.com · <a href="/legal/pt-br/">Todos os documentos legais</a></footer>
+  <script>document.querySelector("a.lingua").addEventListener("click",function(){try{localStorage.setItem("dbscout.legal.lingua","en")}catch(e){}});</script>
+</body>
+</html>

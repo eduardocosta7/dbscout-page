@@ -65,15 +65,18 @@ UE e do Reino Unido e da LGPD brasileira.</p>
 <li><strong>Nenhuma telemetria.</strong> Não coletamos estatísticas de uso, dados analíticos, despejos de falha
 (crash dumps) com os seus dados, nem identificadores de publicidade.</li>
 <li><strong>Os seus bancos de dados ficam no seu computador.</strong> Caminhos de arquivo, conteúdo de bancos de
-dados, preferências dos aplicativos, nomes de tabelas, nomes de pacotes e o SQL que você escreve nunca são enviados a nós.</li>
+dados, preferências dos aplicativos, nomes de tabelas, nomes de pacotes e o SQL que você escreve
+nunca são enviados a nós.</li>
 <li><strong>Quatro conexões do produto, nenhuma delas para os seus dados:</strong> a verificação de licença, o
 atualizador do desktop, o relato de erro do desktop (higienizado antes de sair) e os downloads
-que você solicita. Cada uma é descrita abaixo.</li>
+que você solicita. Além delas, a tela carrega as suas fontes tipográficas do Google Fonts e, se
+você assinar, abre-se a página de checkout da nossa fornecedora de pagamentos. Cada uma é
+descrita abaixo.</li>
 <li><strong>O assistente de IA é a única exceção, e é você quem o aciona.</strong> Quando você faz uma pergunta
-ao assistente, a ferramenta de IA no seu computador (Claude Code, Codex ou Gemini) envia a sua
-pergunta e o que ela lê dos bancos de dados e das preferências dos aplicativos ao respectivo
-fornecedor, com a <strong>sua própria
-conta</strong> nesse fornecedor. Nós não recebemos nada disso.</li>
+ao assistente, a ferramenta de IA que você escolheu no seu computador envia a sua pergunta e o
+que ela lê dos bancos de dados e das preferências dos aplicativos para onde essa ferramenta
+envia — no caso do Claude Code, do Codex e do Gemini, ao respectivo fornecedor, com a <strong>sua
+própria conta</strong> nesse fornecedor (ver a seção 3.7). Nós não recebemos nada disso.</li>
 </ul>
 <h2>2. Dados que ficam no seu computador</h2>
 <p>O DBScout funciona localmente. Para lhe mostrar um banco de dados, ele copia o arquivo do banco
@@ -81,20 +84,40 @@ conta</strong> nesse fornecedor. Nós não recebemos nada disso.</li>
 <code>.db</code> que você escolheu, para a pasta de dados do DBScout no seu computador. Ficam guardados ali,
 e somente ali:</p>
 <ul>
-<li>cópias (retratos) dos bancos de dados e dos arquivos de preferências que você abre, mantidas para evitar copiá-los de novo
-pelo cabo;</li>
+<li>cópias (retratos) dos bancos de dados e dos arquivos de preferências que você abre, mantidas
+para evitar copiá-los de novo pelo cabo;</li>
 <li>a cópia de um banco de dados feita antes da primeira gravação do assistente de IA, para que
 você possa restaurá-lo;</li>
-<li>as suas abas abertas, o SQL que você escreve e as suas preferências;</li>
-<li>os relatos de erro aguardando envio (somente no desktop, ver a seção 3.3);</li>
+<li>os <strong>retratos do banco</strong> que você salva (Pro): cópias completas de um banco de dados, cada uma
+com o nome que você deu e a data em que foi salva. Um retrato contém os dados daquele banco —
+possivelmente dados pessoais de outras pessoas (seção 4) — e fica neste computador, na pasta
+<code>retratos</code> dentro da pasta de dados do DBScout, até você apagá-lo no DBScout ou apagar essa
+pasta. Os retratos nunca saem do seu computador;</li>
+<li>as suas configurações (tema, idioma e tamanho dos painéis) e quando o lembrete do Pro foi
+mostrado ou adiado pela última vez;</li>
+<li>no macOS, os identificadores dos aplicativos do iPhone que o DBScout encontrou ou que você
+digitou, para encontrá-los de novo;</li>
+<li>os relatos de erro aguardando envio, e a credencial do login anônimo usada para enviá-los
+(somente no desktop, ver a seção 3.3);</li>
 <li>as ferramentas de assistente de IA que o DBScout instalou para você, e o <code>adb</code>, se você o
-instalou pelo DBScout.</li>
+instalou pelo DBScout;</li>
+<li>as <strong>consultas que você salva</strong> e o <strong>histórico das 50 últimas consultas que você executou</strong>
+na aba de consulta SQL (Pro), um arquivo por aplicativo (<code>consultas/&lt;aplicativo&gt;.json</code>), que só
+o seu usuário pode ler. O texto do SQL pode conter dados que você digitou nele — um nome ou um
+código num <code>WHERE</code>, por exemplo. Ele nunca é enviado a lugar nenhum.</li>
 </ul>
+<p>O DBScout não guarda as suas abas abertas depois que você o fecha. O SQL que você escreve fica
+guardado somente como consultas salvas e histórico de consultas, como descrito acima. O <strong>log do
+aplicativo</strong> que você abre numa aba (Android) não é guardado em momento nenhum: ele é mostrado na
+tela e sai da memória quando você fecha a aba.</p>
 <p>A sua <strong>chave de licença</strong> é guardada no armazenamento seguro do seu sistema operacional
 (Keychain no macOS, Gerenciador de Credenciais no Windows, Secret Service no Linux), e não em um
 arquivo comum.</p>
 <p>Você pode apagar tudo isso a qualquer momento, desinstalando o DBScout e apagando a pasta de dados
-dele. Não podemos ver, acessar nem apagar esses dados por você: eles nunca chegam até nós.</p>
+dele. Só desinstalar não apaga a pasta de dados, e portanto não apaga os seus retratos do banco,
+as suas consultas salvas nem o histórico de consultas: apague os retratos e as consultas salvas e
+limpe o histórico de consultas no DBScout, ou apague a pasta. Não podemos ver, acessar nem apagar
+esses dados por você: eles nunca chegam até nós.</p>
 <h2>3. Dados que saem do seu computador</h2>
 <h3>3.1 Verificação de licença (somente se você informou uma chave de licença)</h3>
 <p>Quando você ativa o DBScout Pro, e depois aproximadamente a cada 6 horas, o DBScout envia ao nosso
@@ -106,9 +129,12 @@ licença sem revelar o nome, o número de série ou o usuário dele).</li>
 </ul>
 <p>O servidor de licenças roda no <strong>Cloudflare Workers</strong> (Cloudflare, Inc.) e consulta a <strong>Polar</strong>
 (Polar Software, Inc., nossa fornecedora de pagamentos e assinaturas) para saber se a chave é
-válida. A resposta é um token assinado vinculado a este computador. Para evitar o abuso do
-período de teste gratuito, o servidor mantém um registro por computador que iniciou um teste: o
-hash do computador e o ID de cliente na Polar.</p>
+válida. Quando você ativa uma chave, o servidor envia o hash do computador à Polar, que o guarda
+como a <strong>ativação</strong> dessa chave: é assim que uma chave funciona em um computador por vez. A
+resposta é um token assinado vinculado a este computador. Para evitar o abuso do período de teste
+gratuito, o servidor mantém um registro por computador que iniciou um teste: o hash do computador
+e o ID de cliente na Polar. Esse registro é mantido enquanto o produto existir, porque a sua única
+finalidade é permitir um teste por computador.</p>
 <p>Se você usa o plano gratuito sem chave, o DBScout não se comunica com o servidor de licenças.</p>
 <h3>3.2 Atualizações (aplicativo de desktop)</h3>
 <p>O aplicativo de desktop verifica se há nova versão ao abrir e a cada 24 horas. Ele baixa um
@@ -118,18 +144,23 @@ endereço IP e a versão do aplicativo). A extensão é atualizada pelo marketpl
 termos dele.</p>
 <h3>3.3 Relatos de erro (aplicativo de desktop)</h3>
 <p>Quando o aplicativo de desktop encontra um defeito (um erro interno, uma falha, uma tela que não
-foi desenhada), ele registra um breve relato de erro: a versão do aplicativo, o sistema
-operacional, qual parte do programa falhou, a mensagem de erro, a localização no código-fonte e
-um breve rastreamento de pilha (stack trace).</p>
+foi desenhada), ele registra um breve relato de erro: um identificador aleatório do relato, o
+momento em que ocorreu, a versão do aplicativo, o sistema operacional, qual parte do programa
+falhou, a mensagem de erro, a localização no código-fonte, um breve rastreamento de pilha (stack
+trace) e se a falha foi fatal (fechou uma tela ou o aplicativo).</p>
 <p>Antes de um relato ser armazenado ou enviado, o DBScout o <strong>higieniza</strong>: caminhos absolutos de
 arquivo, nomes de pacotes, nomes de arquivos de banco de dados e endereços de e-mail são
-substituídos por marcadores como <code>&lt;path&gt;</code>. O conteúdo das células e o texto do seu SQL nunca
+substituídos pelos marcadores <code>&lt;caminho&gt;</code>, <code>&lt;pacote&gt;</code>, <code>&lt;banco&gt;</code> e <code>&lt;email&gt;</code>. O conteúdo das
+células, o texto do seu SQL e as linhas do log de um aplicativo nunca
 fazem parte de um relato. Situações esperadas (um cabo desconectado, um aplicativo não
 depurável, um erro de digitação no seu SQL) não são relatadas.</p>
 <p>Os relatos são enviados ao <strong>Google Firebase (Cloud Firestore)</strong>, projeto <code>db-inspector-8f280</code>,
-com um login anônimo que não carrega conta, nome nem e-mail. Nós os usamos somente para encontrar
-e corrigir defeitos, e os apagamos quando deixam de ser úteis para isso. A extensão não envia
-relatos de erro.</p>
+com um login anônimo que não carrega conta, nome nem e-mail. Esse login cria, porém, um
+<strong>identificador pseudônimo da instalação</strong>, que é o mesmo para os relatos enviados desta
+instalação (a credencial dele fica na pasta de dados do DBScout), e, como em qualquer conexão, o
+Google vê o endereço IP que os envia. Nós usamos os relatos somente para encontrar e corrigir
+defeitos, os mantemos por até <strong>12 meses</strong> e depois os apagamos. A extensão não envia relatos de
+erro.</p>
 <h3>3.4 Downloads que você solicita</h3>
 <p>Quando você clica para instalar um componente ou um assistente de IA, o DBScout o baixa do
 endereço oficial do fornecedor: o <code>adb</code> e o driver USB do Android, do Google (<code>dl.google.com</code>); o
@@ -145,15 +176,27 @@ outro conteúdo é carregado da internet pela tela.</p>
 (merchant of record). A Polar coleta o seu nome, e-mail, endereço de cobrança e dados de
 pagamento para processar o pagamento e enviar a sua chave de licença. Vemos o seu e-mail e a
 situação da sua assinatura no painel da Polar; nunca vemos o número completo do seu cartão. A
-política de privacidade da Polar se aplica a esses dados.</p>
+política de privacidade da Polar se aplica a esses dados. A página de checkout é da Polar: no
+aplicativo de desktop, ela abre numa janela separada do DBScout e, na extensão, no seu navegador.</p>
 <h3>3.7 O assistente de IA (Pro)</h3>
-<p>O chat de IA executa a própria ferramenta de linha de comando do assistente no seu computador,
-com a <strong>sua conta</strong> no respectivo fornecedor (Anthropic para o Claude Code, OpenAI para o Codex,
-Google para o Gemini). Quando você faz uma pergunta, essa ferramenta envia ao fornecedor a
-pergunta e os dados que ela lê por meio do DBScout (nomes de tabelas, colunas, linhas,
-preferências dos aplicativos). Esses
-dados são regidos pelo <strong>seu contrato com o fornecedor</strong>, e não por nós. O DBScout nunca vê nem
-armazena as suas credenciais junto ao fornecedor.</p>
+<p>O chat de IA executa a própria ferramenta de linha de comando do assistente no seu computador.
+No aplicativo de desktop, o chat oferece o Claude Code (Anthropic), o Codex (OpenAI), o Gemini
+(Google) e o Ollama, e você mesmo pode acrescentar outras ferramentas no arquivo
+<code>assistentes.toml</code>; o chat da extensão oferece o Claude Code e o Codex. Quando você faz uma
+pergunta, a ferramenta escolhida envia a pergunta e os dados que ela lê por meio do DBScout (nomes
+de tabelas, colunas, linhas, preferências dos aplicativos) para onde essa ferramenta envia:</p>
+<ul>
+<li><strong>Claude Code, Codex e Gemini</strong> os enviam ao respectivo fornecedor, com a <strong>sua conta</strong> nesse
+fornecedor. Esses dados são regidos pelo <strong>seu contrato com o fornecedor</strong>, e não por nós. O
+Claude Code e o Codex também mantêm o próprio histórico de sessões no seu computador (em
+<code>~/.claude</code> e <code>~/.codex</code>), segundo as regras do fornecedor.</li>
+<li><strong>Ollama</strong> executa o modelo no seu computador, a menos que você o tenha configurado para usar
+um modelo remoto. Da forma como o DBScout o configura, ele responde sem ler os seus bancos de
+dados.</li>
+<li><strong>Uma ferramenta que você mesmo acrescentou</strong> envia os dados para onde essa ferramenta os
+envia, nos termos dela.</li>
+</ul>
+<p>O DBScout nunca vê nem armazena as suas credenciais junto ao fornecedor.</p>
 <p>O assistente chega aos seus bancos de dados por meio de um servidor que o DBScout executa
 <strong>somente no seu computador</strong> (<code>127.0.0.1</code>), protegido por um token aleatório que muda toda vez
 que o DBScout é aberto. Ele não pode ser alcançado a partir de outros computadores. Se você
@@ -161,13 +204,19 @@ conectar outras ferramentas de IA do seu editor ao DBScout, o mesmo vale para el
 elas leem vão para o respectivo fornecedor, com a sua conta.</p>
 <p><strong>Não pergunte ao assistente sobre um banco de dados que você não tem permissão para compartilhar
 com esse fornecedor.</strong></p>
+<h3>3.8 O site</h3>
+<p>O site <code>dbscout.com.br</code> é hospedado no <strong>GitHub Pages</strong> (GitHub, Inc.). Como em qualquer site, o
+GitHub pode registrar o endereço IP e os detalhes das requisições dos visitantes, segundo a
+declaração de privacidade do GitHub.</p>
 <h2>4. Dados pessoais dentro dos seus bancos de dados</h2>
 <p>Os bancos de dados que você inspeciona podem conter dados pessoais de outras pessoas (por
 exemplo, dos usuários do aplicativo que você está desenvolvendo). Em relação a esses dados,
 <strong>você (ou o seu empregador ou cliente) é o controlador</strong>: você decide o que abrir, editar,
 exportar ou mostrar a um assistente de IA. O DBScout apenas os trata no seu computador, sob o seu
 comando, e não os envia a nós.</p>
-<p>Se você exportar dados para CSV, Excel ou TXT, cabe a você proteger o arquivo exportado.</p>
+<p>Se você exportar dados para CSV, Excel ou TXT, cabe a você proteger o arquivo exportado. O mesmo
+vale para os retratos do banco que você salva (seção 2): são cópias desses dados no seu
+computador, e cabe a você protegê-los e apagá-los quando não precisar mais deles.</p>
 <h2>5. Ferramentas de terceiros são escolha sua</h2>
 <p>O DBScout não exige que você use nenhuma ferramenta de terceiros. O <code>adb</code>, o Xcode, os
 assistentes de IA e o seu editor são distribuídos pelos respectivos titulares (Google, Apple,
@@ -185,6 +234,9 @@ teste gratuito por computador.</li>
 descrita acima.</li>
 <li><strong>Downloads e atualizações:</strong> execução do contrato (fornecimento do software que você usa).</li>
 </ul>
+<p><strong>Por quanto tempo guardamos.</strong> Os relatos de erro são mantidos por até 12 meses e depois
+apagados. O registro de testes é mantido enquanto o produto existir. Os dados de licença e de
+pagamento são mantidos pela Polar, segundo a política dela.</p>
 <h2>7. Quem recebe dados, e onde</h2>
 <div class="tabela"><table>
 <thead>
@@ -201,12 +253,12 @@ descrita acima.</li>
 </tr>
 <tr>
 <td>Polar Software, Inc.</td>
-<td>Pagamento, assinatura, chaves de licença</td>
+<td>Pagamento, assinatura, chaves de licença, e o hash do computador como ativação da chave (um computador por chave)</td>
 <td>Estados Unidos</td>
 </tr>
 <tr>
 <td>Google LLC (Firebase)</td>
-<td>Relatos de erro higienizados (desktop)</td>
+<td>Relatos de erro higienizados, identificador anônimo da instalação e endereço IP (desktop)</td>
 <td>Estados Unidos</td>
 </tr>
 <tr>
@@ -215,7 +267,12 @@ descrita acima.</li>
 <td>Rede global</td>
 </tr>
 <tr>
-<td>Anthropic, OpenAI, Google</td>
+<td>GitHub, Inc.</td>
+<td>Hospedagem do site (endereços IP dos visitantes)</td>
+<td>Estados Unidos</td>
+</tr>
+<tr>
+<td>Anthropic, OpenAI, Google, ou uma ferramenta que você acrescentou</td>
 <td>Somente o que <strong>você</strong> pergunta ao assistente de IA, com a <strong>sua</strong> conta</td>
 <td>Conforme o seu contrato com o fornecedor</td>
 </tr>
@@ -228,7 +285,8 @@ alugamos nem compartilhamos dados com mais ninguém, e não os usamos para publi
 hash da identidade do computador, ID de cliente na Polar, e-mail por meio da Polar) e
 <strong>informações comerciais</strong> (situação da assinatura), para as finalidades da seção 3. De usuários
 do desktop, também podemos receber <strong>relatos de erro</strong> higienizados (versão do aplicativo,
-sistema operacional e detalhes técnicos). Não coletamos informações pessoais sensíveis,
+sistema operacional e detalhes técnicos), com o <strong>endereço IP e o identificador anônimo da
+instalação</strong> que os envia. Não coletamos informações pessoais sensíveis,
 geolocalização precisa nem dados biométricos.</p>
 <p><strong>Não vendemos nem compartilhamos informações pessoais</strong>, no sentido em que &quot;vender&quot; (&quot;sell&quot;) e
 &quot;compartilhar&quot; (&quot;share&quot;) são definidos pela CCPA/CPRA, e não o fizemos nos últimos 12 meses. Não

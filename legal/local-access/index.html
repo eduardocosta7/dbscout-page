@@ -61,7 +61,8 @@ it does, so you can decide whether to use it on a given computer, phone or proje
 downloads or configures one after <strong>you click</strong>. You can decline, uninstall them, or use your
 own copies. DBScout keeps working, with fewer features, without the optional ones.</li>
 <li><strong>These tools belong to others.</strong> <code>adb</code> and the USB driver are Google&#39;s, Xcode and <code>devicectl</code>
-are Apple&#39;s, the AI command-line tools are Anthropic&#39;s, OpenAI&#39;s and Google&#39;s. <strong>We have no
+are Apple&#39;s, the AI command-line tools are Anthropic&#39;s, OpenAI&#39;s, Google&#39;s and Ollama&#39;s (or
+belong to whoever makes a tool you added yourself). <strong>We have no
 partnership, sponsorship or agreement with any of them, and none of them guarantees, supports
 or is responsible for DBScout.</strong> We use them as any developer can, under the terms their owners
 publish, and those terms govern your use of them.</li>
@@ -83,6 +84,16 @@ feature may stop working. We do not guarantee compatibility with any version.</l
 <td>While the app is open and a phone is connected; it checks for phones every 2 seconds</td>
 </tr>
 <tr>
+<td><code>adb pair</code> and <code>adb connect</code></td>
+<td>Pair with and connect to an Android phone over your local network (Wireless debugging, Android 11+), with the address and pairing code you type</td>
+<td>Only when you click <strong>Connect over Wi-Fi</strong></td>
+</tr>
+<tr>
+<td><code>adb shell pidof</code> and <code>adb logcat -d</code></td>
+<td>Read the recent log of one Android app: find its process, then print the last lines of that process (or, if the app isn&#39;t running, the lines of the system log that mention it or come from its processes) and stop</td>
+<td>Only when you click <strong>Log</strong> on an app, or <strong>Refresh log</strong> in its tab</td>
+</tr>
+<tr>
 <td><code>xcrun devicectl</code> (macOS only)</td>
 <td>List the iPhone apps installed by Xcode or <code>flutter run</code>, copy their data container files, write changes back</td>
 <td>While the app is open and an iPhone is connected</td>
@@ -93,7 +104,7 @@ feature may stop working. We do not guarantee compatibility with any version.</l
 <td>While the app is open; it checks for running simulators every 2 seconds</td>
 </tr>
 <tr>
-<td>The AI assistant CLI (Claude Code, Codex, Gemini)</td>
+<td>The AI assistant CLI (Claude Code, Codex, Gemini or Ollama, or a tool you added on the desktop)</td>
 <td>Answer the questions you type in the chat (Pro)</td>
 <td>Only when you send a question</td>
 </tr>
@@ -104,24 +115,51 @@ copy only if you have none and you clicked to install it.</p>
 arguments DBScout itself builds.</p>
 <h2>3. What DBScout does on your phone</h2>
 <ul>
-<li><strong>Android:</strong> it uses <code>adb shell run-as &lt;package&gt;</code>, which only works for apps installed as
+<li><p><strong>Android:</strong> it uses <code>adb shell run-as &lt;package&gt;</code>, which only works for apps installed as
 <strong>debuggable</strong> (debug builds). Release builds from the store cannot be read this way, and
 DBScout does not try to bypass this. It lists the files inside the app&#39;s own private folder,
 finds the SQLite databases by their file header and copies them, with their <code>-wal</code>, <code>-shm</code> and
-<code>-journal</code> companions, to your computer.</li>
-<li><strong>iPhone:</strong> it reads the data container of apps installed by Xcode or <code>flutter run</code>, through
-Apple&#39;s <code>devicectl</code>.</li>
-<li><strong>iOS Simulator (macOS only):</strong> the simulator keeps each app&#39;s data container in a folder on
+<code>-journal</code> companions, to your computer.</p>
+</li>
+<li><p><strong>Android over Wi-Fi:</strong> when you use <strong>Connect over Wi-Fi</strong>, DBScout runs <code>adb pair</code> (only if
+you filled in the pairing address and code) and <code>adb connect</code> with the address you typed. From
+then on the phone works as if it were on the cable, and everything above — the listing, the
+copies of the databases and the writes back — <strong>travels over your local network</strong> between the
+phone and your computer, not over the cable. DBScout does not change the phone&#39;s network
+settings; Wireless debugging is turned on and off by you, on the phone. Use it only on a network
+you trust.</p>
+</li>
+<li><p><strong>iPhone:</strong> it reads the data container of apps installed by Xcode or <code>flutter run</code>, through
+Apple&#39;s <code>devicectl</code>.</p>
+</li>
+<li><p><strong>iOS Simulator (macOS only):</strong> the simulator keeps each app&#39;s data container in a folder on
 your Mac (<code>~/Library/Developer/CoreSimulator/Devices/</code>). DBScout finds that folder with
-<code>simctl</code>, reads the databases and the <code>Library/Preferences/</code> file of apps installed by Xcode or
-<code>flutter run</code> directly from it, and writes changes (Pro) back to the same files. It only looks
-at simulators that are running, and only inside the data container of those apps.</li>
-<li><strong>Writes (Pro):</strong> when you edit a cell, delete a row, run a writing SQL statement, or let the
+<code>simctl</code> and reads the databases and the <code>Library/Preferences/</code> file of apps installed by Xcode
+or <code>flutter run</code> directly from it. Database changes (Pro) are written back to the same files,
+in place. The Simulator&#39;s preferences are read-only. It only looks at simulators that are
+running, and only inside the data container of those apps.</p>
+</li>
+<li><p><strong>Writes (Pro):</strong> when you edit a cell, delete a row, run a writing SQL statement, or let the
 AI assistant write, DBScout changes its local copy of the database and <strong>copies it back</strong> to
-the phone (or to the simulator&#39;s folder), replacing the app&#39;s database file.</li>
-<li><strong>App preferences:</strong> it reads the app&#39;s preferences files (<code>shared_prefs/</code>, <code>files/datastore/</code>,
+the phone (or to the simulator&#39;s folder), replacing the app&#39;s database file.</p>
+</li>
+<li><p><strong>App preferences:</strong> it reads the app&#39;s preferences files (<code>shared_prefs/</code>, <code>files/datastore/</code>,
 <code>Library/Preferences/</code>) and, when you save or delete one (Pro, Android only), closes the app
-(<code>am force-stop</code>) before writing. The app is not opened again by DBScout; you open it.</li>
+(<code>am force-stop</code>) before writing. The app is not opened again by DBScout; you open it.</p>
+</li>
+<li><p><strong>Restoring a database snapshot (Pro):</strong> DBScout copies the saved snapshot back to the phone
+(or to the simulator&#39;s folder, or the <code>.db</code> file), replacing the app&#39;s database file. On
+Android, it closes the app (<code>am force-stop</code>) first; on the iPhone and in the iOS Simulator it
+cannot close the app, so close it yourself before restoring.</p>
+</li>
+<li><p><strong>App log (Android only):</strong> when you click <strong>Log</strong> on an app, DBScout reads the last lines of
+that app&#39;s log with <code>logcat -d</code> (a one-time read that ends by itself, not a live stream). An
+app&#39;s log can contain <strong>personal data</strong> — whatever its developer chose to write there, such as
+e-mail addresses, tokens or server responses. DBScout <strong>only shows it on screen</strong>: it does not
+store it on disk, does not include it in error reports and does not send it anywhere; closing
+the tab removes it from memory. The AI assistant cannot read the log; it only sees a log line
+if you paste it into the chat yourself.</p>
+</li>
 </ul>
 <p>DBScout does not root, jailbreak, install anything on, or change the settings of your phone.</p>
 <h2>4. Changes that ask for your permission</h2>
@@ -138,6 +176,14 @@ click:</p>
 <code>~/.codex/config.toml</code> and <code>~/.gemini/config/mcp_config.json</code>. Nothing else in those files is
 changed. GitHub Copilot is connected through the editor&#39;s own API, without a file.</p>
 <p>Exports (CSV, Excel, TXT) are written where you choose in the save dialog.</p>
+<p>Database snapshots (Pro) are written inside DBScout&#39;s own data folder, in <code>retratos/</code>, readable
+only by your user account, and stay there until you delete them. Uninstalling DBScout does not
+delete them: delete them in DBScout, or delete the <code>retratos</code> folder yourself.</p>
+<p>Inside its own data folder, besides the copies of the databases you open, DBScout writes the
+<strong>queries you save and the history of the last 50 queries you ran</strong> in the SQL query tab (Pro):
+one file per app, <code>consultas/&lt;app&gt;.json</code>, readable only by your user account. The SQL text can
+contain data you typed in it. These files never leave your computer, and uninstalling DBScout
+does not delete them: delete the data folder to remove them.</p>
 <h2>6. The local AI server</h2>
 <p>While DBScout is open, it runs a small server on <code>127.0.0.1</code> (your computer only) that gives
 AI assistants access to the databases and app preferences on screen. It needs a random token,
@@ -149,10 +195,19 @@ refuses all requests.</p>
 and writes at the same time DBScout copies the database back, one of the two writes may be lost
 or the file may be damaged. Close the app on the phone before editing, and keep a copy of
 data you cannot lose.</li>
+<li><strong>In the iOS Simulator, the app is usually running while DBScout writes.</strong> DBScout only sees
+simulators that are running, and it does not close the simulated app before writing its
+database, so the risk above applies there too. Close the app in the Simulator before editing.</li>
 <li><strong>Saving or deleting a preference closes the app</strong> on the phone. Anything the app had not saved yet is
 lost, as when the system closes it.</li>
 <li><strong>Writes cannot be undone by DBScout,</strong> except for the copy kept before the AI assistant&#39;s first
-write in a session. Deleted rows are deleted.</li>
+write in a session and the database snapshots you saved yourself (Pro). Deleted rows are deleted.</li>
+<li><strong>Restoring a snapshot replaces the database</strong> on the phone, in the iOS Simulator or in the
+<code>.db</code> file with the saved copy. Everything the database received after the snapshot was saved —
+including what the app wrote — is lost, and DBScout cannot undo the restore. On Android,
+restoring <strong>closes the app</strong> first, and anything it had not saved yet is lost; on the iPhone and
+in the iOS Simulator, close the app yourself before restoring. Save a new snapshot first if you
+may need the current state.</li>
 <li><strong>What the AI reads goes to its vendor.</strong> See the Privacy Policy, section 3.7.</li>
 <li><strong>Two different versions of <code>adb</code></strong> on the same computer stop each other&#39;s server. This is how
 <code>adb</code> works, not a DBScout defect.</li>

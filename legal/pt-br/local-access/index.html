@@ -63,8 +63,8 @@ e só baixa ou configura uma delas depois que <strong>você clica</strong>. Voc�
 desinstalá-las ou usar as suas próprias cópias. O DBScout continua funcionando, com menos
 recursos, sem as opcionais.</li>
 <li><strong>Essas ferramentas pertencem a terceiros.</strong> O <code>adb</code> e o driver USB são do Google, o Xcode e o
-<code>devicectl</code> são da Apple, as ferramentas de IA de linha de comando são da Anthropic, da OpenAI e
-do Google. <strong>Não temos parceria, patrocínio nem acordo com nenhum deles, e nenhum deles garante,
+<code>devicectl</code> são da Apple, as ferramentas de IA de linha de comando são da Anthropic, da OpenAI,
+do Google e do Ollama (ou de quem faz uma ferramenta que você mesmo acrescentou). <strong>Não temos parceria, patrocínio nem acordo com nenhum deles, e nenhum deles garante,
 dá suporte ou é responsável pelo DBScout.</strong> Nós as usamos como qualquer desenvolvedor pode
 usá-las, nos termos que os respectivos titulares publicam, e esses termos regem o seu uso delas.</li>
 <li><strong>Não as controlamos.</strong> Se um titular alterar, restringir ou descontinuar uma ferramenta, um
@@ -85,6 +85,16 @@ recurso do DBScout pode deixar de funcionar. Não garantimos compatibilidade com
 <td>Enquanto o aplicativo está aberto e há um celular conectado; ele verifica a presença de celulares a cada 2 segundos</td>
 </tr>
 <tr>
+<td><code>adb pair</code> e <code>adb connect</code></td>
+<td>Parear e conectar um celular Android pela sua rede local (Depuração por Wi-Fi, Android 11+), com o endereço e o código de pareamento que você digita</td>
+<td>Somente quando você clica em <strong>Conectar por Wi-Fi</strong></td>
+</tr>
+<tr>
+<td><code>adb shell pidof</code> e <code>adb logcat -d</code></td>
+<td>Ler o log recente de um aplicativo Android: encontrar o processo dele e imprimir as últimas linhas desse processo (ou, se o aplicativo não estiver rodando, as linhas do log do sistema que o citam ou que vêm dos processos dele) e parar</td>
+<td>Somente quando você clica em <strong>Log</strong> num aplicativo, ou em <strong>Atualizar o log</strong> na aba dele</td>
+</tr>
+<tr>
 <td><code>xcrun devicectl</code> (somente macOS)</td>
 <td>Listar os aplicativos do iPhone instalados pelo Xcode ou pelo <code>flutter run</code>, copiar os arquivos do contêiner de dados deles, gravar as alterações de volta</td>
 <td>Enquanto o aplicativo está aberto e há um iPhone conectado</td>
@@ -95,7 +105,7 @@ recurso do DBScout pode deixar de funcionar. Não garantimos compatibilidade com
 <td>Enquanto o aplicativo está aberto; ele verifica os simuladores ligados a cada 2 segundos</td>
 </tr>
 <tr>
-<td>O CLI do assistente de IA (Claude Code, Codex, Gemini)</td>
+<td>O CLI do assistente de IA (Claude Code, Codex, Gemini ou Ollama, ou uma ferramenta que você acrescentou no desktop)</td>
 <td>Responder às perguntas que você digita no chat (Pro)</td>
 <td>Somente quando você envia uma pergunta</td>
 </tr>
@@ -106,27 +116,54 @@ própria cópia somente se você não tiver nenhum e tiver clicado para instalá
 somente com os argumentos que o próprio DBScout monta.</p>
 <h2>3. O que o DBScout faz no seu celular</h2>
 <ul>
-<li><strong>Android:</strong> ele usa <code>adb shell run-as &lt;package&gt;</code>, que só funciona com aplicativos instalados
+<li><p><strong>Android:</strong> ele usa <code>adb shell run-as &lt;package&gt;</code>, que só funciona com aplicativos instalados
 como <strong>depuráveis</strong> (builds de depuração). Builds de produção da loja não podem ser lidos dessa
 forma, e o DBScout não tenta contornar isso. Ele lista os arquivos dentro da pasta privada do
 próprio aplicativo, encontra os bancos de dados SQLite pelo cabeçalho do arquivo e os copia, com
-os arquivos que os acompanham, <code>-wal</code>, <code>-shm</code> e <code>-journal</code>, para o seu computador.</li>
-<li><strong>iPhone:</strong> ele lê o contêiner de dados dos aplicativos instalados pelo Xcode ou pelo
-<code>flutter run</code>, por meio do <code>devicectl</code> da Apple.</li>
-<li><strong>Simulador do iOS (somente macOS):</strong> o simulador guarda o contêiner de dados de cada
+os arquivos que os acompanham, <code>-wal</code>, <code>-shm</code> e <code>-journal</code>, para o seu computador.</p>
+</li>
+<li><p><strong>Android por Wi-Fi:</strong> quando você usa <strong>Conectar por Wi-Fi</strong>, o DBScout executa <code>adb pair</code>
+(somente se você preencheu o endereço e o código de pareamento) e <code>adb connect</code> com o endereço
+que você digitou. Daí em diante o celular funciona como se estivesse no cabo, e tudo o que está
+acima — a listagem, as cópias dos bancos de dados e as gravações de volta — <strong>trafega pela sua
+rede local</strong> entre o celular e o seu computador, e não pelo cabo. O DBScout não altera as
+configurações de rede do celular; a Depuração por Wi-Fi é ligada e desligada por você, no
+celular. Use-a somente numa rede em que você confia.</p>
+</li>
+<li><p><strong>iPhone:</strong> ele lê o contêiner de dados dos aplicativos instalados pelo Xcode ou pelo
+<code>flutter run</code>, por meio do <code>devicectl</code> da Apple.</p>
+</li>
+<li><p><strong>Simulador do iOS (somente macOS):</strong> o simulador guarda o contêiner de dados de cada
 aplicativo numa pasta do seu Mac (<code>~/Library/Developer/CoreSimulator/Devices/</code>). O DBScout
-encontra essa pasta pelo <code>simctl</code>, lê dela diretamente os bancos de dados e o arquivo de
-<code>Library/Preferences/</code> dos aplicativos instalados pelo Xcode ou pelo <code>flutter run</code>, e grava as
-alterações (Pro) de volta nos mesmos arquivos. Ele só olha os simuladores ligados, e só dentro
-do contêiner de dados desses aplicativos.</li>
-<li><strong>Gravações (Pro):</strong> quando você edita uma célula, exclui uma linha, executa uma instrução SQL
+encontra essa pasta pelo <code>simctl</code> e lê dela diretamente os bancos de dados e o arquivo de
+<code>Library/Preferences/</code> dos aplicativos instalados pelo Xcode ou pelo <code>flutter run</code>. As
+alterações nos bancos de dados (Pro) são gravadas de volta nos mesmos arquivos, no próprio
+lugar. As preferências do Simulador são somente leitura. Ele só olha os simuladores ligados, e
+só dentro do contêiner de dados desses aplicativos.</p>
+</li>
+<li><p><strong>Gravações (Pro):</strong> quando você edita uma célula, exclui uma linha, executa uma instrução SQL
 de gravação ou permite que o assistente de IA grave, o DBScout altera a sua cópia local do banco
 de dados e <strong>a copia de volta</strong> para o celular (ou para a pasta do simulador), substituindo o
-arquivo de banco de dados do aplicativo.</li>
-<li><strong>Preferências do aplicativo:</strong> ele lê os arquivos de preferências do aplicativo
+arquivo de banco de dados do aplicativo.</p>
+</li>
+<li><p><strong>Preferências do aplicativo:</strong> ele lê os arquivos de preferências do aplicativo
 (<code>shared_prefs/</code>, <code>files/datastore/</code>, <code>Library/Preferences/</code>) e, quando você grava ou apaga uma
 (Pro, somente no Android), fecha o aplicativo (<code>am force-stop</code>) antes de gravar. O DBScout não abre o
-aplicativo de novo; quem o abre é você.</li>
+aplicativo de novo; quem o abre é você.</p>
+</li>
+<li><p><strong>Restaurar um retrato do banco (Pro):</strong> o DBScout copia o retrato salvo de volta para o
+celular (ou para a pasta do simulador, ou para o arquivo <code>.db</code>), substituindo o arquivo de banco
+de dados do aplicativo. No Android, ele fecha o aplicativo (<code>am force-stop</code>) antes; no iPhone e
+no Simulador do iOS ele não consegue fechar o aplicativo, então feche-o você antes de restaurar.</p>
+</li>
+<li><p><strong>Log do aplicativo (somente Android):</strong> quando você clica em <strong>Log</strong> num aplicativo, o DBScout
+lê as últimas linhas do log desse aplicativo com <code>logcat -d</code> (uma leitura única, que termina
+sozinha, e não um fluxo contínuo). O log de um aplicativo pode conter <strong>dados pessoais</strong> — o que
+o desenvolvedor dele escolheu escrever ali, como endereços de e-mail, tokens ou respostas de
+servidor. O DBScout <strong>apenas o mostra na tela</strong>: não o grava em disco, não o inclui em relatos
+de erro e não o envia a lugar nenhum; fechar a aba o tira da memória. O assistente de IA não lê
+o log; ele só vê uma linha de log se você mesmo a colar no chat.</p>
+</li>
 </ul>
 <p>O DBScout não faz root nem jailbreak no seu celular, não instala nada nele e não altera as
 configurações dele.</p>
@@ -145,6 +182,16 @@ o DBScout acrescenta <strong>uma entrada chamada <code>dbscout</code></strong> a
 <code>~/.claude.json</code>, <code>~/.codex/config.toml</code> e <code>~/.gemini/config/mcp_config.json</code>. Nada mais nesses
 arquivos é alterado. O GitHub Copilot é conectado pela API do próprio editor, sem arquivo.</p>
 <p>As exportações (CSV, Excel, TXT) são gravadas onde você escolher na caixa de diálogo de salvar.</p>
+<p>Os retratos do banco (Pro) são gravados dentro da própria pasta de dados do DBScout, em
+<code>retratos/</code>, legíveis somente pela sua conta de usuário, e ficam ali até você apagá-los.
+Desinstalar o DBScout não os apaga: apague-os no DBScout, ou apague você mesmo a pasta
+<code>retratos</code>.</p>
+<p>Dentro da própria pasta de dados, além das cópias dos bancos de dados que você abre, o DBScout
+grava as <strong>consultas que você salva e o histórico das 50 últimas consultas que você executou</strong>
+na aba de consulta SQL (Pro): um arquivo por aplicativo, <code>consultas/&lt;aplicativo&gt;.json</code>, que só o
+seu usuário pode ler. O texto do SQL pode conter dados que você digitou nele. Esses arquivos
+nunca saem do seu computador, e desinstalar o DBScout não os apaga: apague a pasta de dados para
+removê-los.</p>
 <h2>6. O servidor local de IA</h2>
 <p>Enquanto o DBScout está aberto, ele executa um pequeno servidor em <code>127.0.0.1</code> (somente o seu
 computador) que dá aos assistentes de IA acesso aos bancos de dados e às preferências dos
@@ -156,10 +203,21 @@ plano gratuito, ele recusa todas as requisições.</p>
 estiver em execução no celular e gravar ao mesmo tempo em que o DBScout copia o banco de dados de
 volta, uma das duas gravações pode se perder ou o arquivo pode ser danificado. Feche o aplicativo
 no celular antes de editar, e mantenha uma cópia dos dados que você não pode perder.</li>
+<li><strong>No Simulador do iOS, o aplicativo costuma estar em execução enquanto o DBScout grava.</strong> O
+DBScout só vê simuladores ligados e não fecha o aplicativo simulado antes de gravar o banco de
+dados dele, então o risco acima vale também ali. Feche o aplicativo no Simulador antes de
+editar.</li>
 <li><strong>Gravar ou apagar uma preferência fecha o aplicativo</strong> no celular. O que o aplicativo ainda não tinha
 salvo se perde, como quando o sistema o fecha.</li>
 <li><strong>As gravações não podem ser desfeitas pelo DBScout,</strong> exceto pela cópia mantida antes da
-primeira gravação do assistente de IA em uma sessão. Linhas excluídas ficam excluídas.</li>
+primeira gravação do assistente de IA em uma sessão e pelos retratos do banco que você mesmo
+salvou (Pro). Linhas excluídas ficam excluídas.</li>
+<li><strong>Restaurar um retrato substitui o banco de dados</strong> no celular, no Simulador do iOS ou no
+arquivo <code>.db</code> pela cópia salva. Tudo o que o banco recebeu depois de o retrato ser salvo —
+inclusive o que o aplicativo gravou — se perde, e o DBScout não consegue desfazer a
+restauração. No Android, restaurar <strong>fecha o aplicativo</strong> antes, e o que ele ainda não tinha
+salvo se perde; no iPhone e no Simulador do iOS, feche o aplicativo você antes de restaurar.
+Salve um retrato novo antes se puder precisar do estado atual.</li>
 <li><strong>O que a IA lê vai para o respectivo fornecedor.</strong> Consulte a Política de Privacidade, seção
 3.7.</li>
 <li><strong>Duas versões diferentes do <code>adb</code></strong> no mesmo computador derrubam o servidor uma da outra. É

@@ -68,9 +68,11 @@ DBScout</strong>. If these Terms and the EULA conflict about the software, the E
 <p><strong>THE EULA CONTAINS A BINDING ARBITRATION AGREEMENT AND A CLASS ACTION WAIVER (SECTION 12), WHICH
 ALSO APPLY TO THESE TERMS.</strong></p>
 <h2>1. What DBScout is</h2>
-<p>DBScout is a tool for software developers to inspect, query, edit and export the SQLite databases,
-and view and edit the app preferences, of Android and iPhone apps under development, and <code>.db</code>
-files on their computer, with optional AI assistance. It is meant for <strong>debug builds of apps you develop or are authorized to inspect</strong>.</p>
+<p>DBScout is a tool for software developers to inspect, query, edit and export the SQLite databases
+of Android and iOS apps under development — on a phone or, on a Mac, in the iOS Simulator — and
+<code>.db</code> files on their computer, and to view the preferences of those apps (and edit them, on
+Android), with optional AI assistance. It is meant for <strong>debug builds of apps you develop or are
+authorized to inspect</strong>.</p>
 <h2>2. Your use is voluntary; we are independent</h2>
 <ul>
 <li><strong>Nothing is forced on you.</strong> You decide whether to install DBScout, whether to connect a phone,
@@ -78,9 +80,9 @@ which app and database to open, whether to install <code>adb</code>, a USB drive
 whether to subscribe. DBScout installs third-party tools only after you click, and you can
 decline, remove them or use your own copies.</li>
 <li><strong>We are an independent developer.</strong> DBScout uses tools that their owners distribute publicly —
-<code>adb</code> and the USB driver (Google), Xcode and <code>devicectl</code> (Apple), the Claude Code (Anthropic),
-Codex (OpenAI) and Gemini (Google) command-line tools, and your editor (Microsoft Visual Studio
-Code, Antigravity and others). <strong>We have no partnership, sponsorship, endorsement, reseller or
+<code>adb</code> and the USB driver (Google), Xcode, <code>devicectl</code> and <code>simctl</code> (Apple), the Claude Code
+(Anthropic), Codex (OpenAI), Gemini (Google) and Ollama command-line tools, any assistant tool
+you add yourself, and your editor (Microsoft Visual Studio Code, Antigravity and others). <strong>We have no partnership, sponsorship, endorsement, reseller or
 other commercial agreement with any of them, and none of them guarantees, supports or is
 responsible for DBScout.</strong> Their names and marks belong to their owners and appear only to
 describe compatibility.</li>
@@ -112,11 +114,12 @@ confidential data — <strong>for that data, you or your organization are respon
 use it to harm others.</li>
 </ul>
 <h2>5. Writes and data loss</h2>
-<p>DBScout can change and delete data (Pro): cell edits, row deletion, SQL writes and AI writes
-replace the database on the phone or on your computer, and saving an app preference replaces the
+<p>DBScout can change and delete data (Pro): cell edits, row deletion, SQL writes, AI writes and
+restoring a database snapshot replace the database on the phone, in the iOS Simulator or on your computer, and saving an app preference replaces the
 preferences file on the phone and closes the app first. A write made while the app on the phone is
-using the database can be lost or damage the file. DBScout keeps a copy only before the AI
-assistant&#39;s first write in a session. <strong>You are solely responsible for the changes you make or
+using the database can be lost or damage the file. On its own, DBScout keeps a copy only before
+the AI assistant&#39;s first write in a session; any other copy is a snapshot you chose to save
+(Pro). <strong>You are solely responsible for the changes you make or
 allow the AI assistant to make, and for their consequences.</strong></p>
 <h2>6. AI assistants</h2>
 <p>The AI chat runs third-party tools under <strong>your own account</strong> with each vendor; their terms,
@@ -125,9 +128,12 @@ automatically, may be inaccurate, incomplete or out of date, and is <strong>not 
 Review it before acting on it. We are not responsible for the vendors&#39; services, availability or
 handling of the data you send them.</p>
 <h2>7. Subscription</h2>
-<p>DBScout Pro is a paid, <strong>automatically renewing</strong> subscription with a 3-day free trial, which you
+<p>DBScout Pro is a paid, <strong>automatically renewing</strong> subscription with the free trial shown at
+checkout (currently 3 days), which you
 can cancel online at any time, and which is <strong>non-refundable</strong> except where the law requires a
-refund. The details are in the <strong>Subscription Policy</strong>, which is part of these Terms.</p>
+refund. The trial length and the prices may be extended or changed by Special Conditions that we
+may make available at our discretion, always shown at checkout before you confirm. The details are
+in the <strong>Subscription Policy</strong>, which is part of these Terms.</p>
 <h2>8. Availability and changes</h2>
 <p>We work to keep DBScout and its license server available, but do not guarantee that it will
 always work, or work on every phone, operating system, editor or tool version. We may change, add

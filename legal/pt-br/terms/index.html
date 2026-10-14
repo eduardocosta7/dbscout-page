@@ -69,9 +69,11 @@ software, garantias, responsabilidade, arbitragem e lei aplicável;</li>
 QUE TAMBÉM SE APLICAM A ESTES TERMOS.</strong></p>
 <h2>1. O que é o DBScout</h2>
 <p>O DBScout é uma ferramenta para desenvolvedores de software inspecionarem, consultarem, editarem
-e exportarem os bancos de dados SQLite, e visualizarem e editarem as preferências, de aplicativos
-Android e iPhone em desenvolvimento, e arquivos <code>.db</code> no seu computador, com assistência opcional de IA. Destina-se a <strong>builds de
-depuração de aplicativos que você desenvolve ou está autorizado a inspecionar</strong>.</p>
+e exportarem os bancos de dados SQLite de aplicativos Android e iOS em desenvolvimento — num
+celular ou, no Mac, no Simulador do iOS — e arquivos <code>.db</code> no seu computador, e para
+visualizarem as preferências desses aplicativos (e editá-las, no Android), com assistência
+opcional de IA. Destina-se a <strong>builds de depuração de aplicativos que você desenvolve ou está
+autorizado a inspecionar</strong>.</p>
 <h2>2. O seu uso é voluntário; nós somos independentes</h2>
 <ul>
 <li><strong>Nada lhe é imposto.</strong> Você decide se instala o DBScout, se conecta um celular, qual
@@ -79,9 +81,10 @@ aplicativo e qual banco de dados abre, se instala o <code>adb</code>, um driver 
 IA, e se assina. O DBScout instala ferramentas de terceiros somente depois do seu clique, e você
 pode recusá-las, removê-las ou usar as suas próprias cópias.</li>
 <li><strong>Somos um desenvolvedor independente.</strong> O DBScout usa ferramentas que os respectivos titulares
-distribuem publicamente — o <code>adb</code> e o driver USB (Google), o Xcode e o <code>devicectl</code> (Apple), as
-ferramentas de linha de comando Claude Code (Anthropic), Codex (OpenAI) e Gemini (Google), e o
-seu editor (Microsoft Visual Studio Code, Antigravity e outros). <strong>Não temos parceria,
+distribuem publicamente — o <code>adb</code> e o driver USB (Google), o Xcode, o <code>devicectl</code> e o <code>simctl</code>
+(Apple), as ferramentas de linha de comando Claude Code (Anthropic), Codex (OpenAI), Gemini
+(Google) e Ollama, qualquer ferramenta de assistente que você mesmo acrescente, e o seu editor
+(Microsoft Visual Studio Code, Antigravity e outros). <strong>Não temos parceria,
 patrocínio, endosso, revenda ou qualquer outro acordo comercial com nenhum deles, e nenhum deles
 garante, dá suporte ou é responsável pelo DBScout.</strong> Os nomes e as marcas pertencem aos
 respectivos titulares e aparecem apenas para descrever compatibilidade.</li>
@@ -118,12 +121,13 @@ sobrecarregar ou atacar os servidores dele, ou usá-lo para causar dano a outras
 </ul>
 <h2>5. Gravações e perda de dados</h2>
 <p>O DBScout pode alterar e excluir dados (Pro): edições de célula, exclusão de linhas, gravações
-por SQL e gravações feitas pela IA substituem o banco de dados no celular ou no seu computador, e
+por SQL, gravações feitas pela IA e a restauração de um retrato do banco substituem o banco de dados no celular, no Simulador do iOS ou no seu computador, e
 gravar uma preferência do aplicativo substitui o arquivo de preferências no celular e fecha o
 aplicativo antes.
 Uma gravação feita enquanto o aplicativo no celular está usando o banco de dados pode ser perdida
-ou danificar o arquivo. O DBScout guarda uma cópia somente antes da primeira gravação do
-assistente de IA em uma sessão. <strong>Você é o único responsável pelas alterações que fizer ou que
+ou danificar o arquivo. Por conta própria, o DBScout guarda uma cópia somente antes da primeira
+gravação do assistente de IA em uma sessão; qualquer outra cópia é um retrato do banco que você
+escolheu salvar (Pro). <strong>Você é o único responsável pelas alterações que fizer ou que
 permitir que o assistente de IA faça, e pelas consequências delas.</strong></p>
 <h2>6. Assistentes de IA</h2>
 <p>O chat de IA executa ferramentas de terceiros com a <strong>sua própria conta</strong> em cada fornecedor;
@@ -133,9 +137,11 @@ gráficos, análises — é gerado automaticamente, pode ser impreciso, incomple
 responsáveis pelos serviços dos fornecedores, pela disponibilidade deles nem pelo tratamento que
 dão aos dados que você lhes envia.</p>
 <h2>7. Assinatura</h2>
-<p>O DBScout Pro é uma assinatura paga, <strong>com renovação automática</strong> e período de teste gratuito de
-3 dias, que você pode cancelar on-line a qualquer momento, e que <strong>não é reembolsável</strong>, exceto
-quando a lei exigir o reembolso. Os detalhes estão na <strong>Política de Assinatura</strong>, que faz parte
+<p>O DBScout Pro é uma assinatura paga, <strong>com renovação automática</strong> e com o período de teste
+gratuito mostrado no checkout (atualmente, 3 dias), que você pode cancelar on-line a qualquer momento, e que <strong>não é reembolsável</strong>, exceto
+quando a lei exigir o reembolso. A duração do teste e os preços podem ser ampliados ou alterados
+por Condições Especiais que podemos disponibilizar a nosso critério, sempre apresentadas no
+checkout antes de você confirmar. Os detalhes estão na <strong>Política de Assinatura</strong>, que faz parte
 destes Termos.</p>
 <h2>8. Disponibilidade e alterações</h2>
 <p>Trabalhamos para manter o DBScout e o servidor de licenças disponíveis, mas não garantimos que

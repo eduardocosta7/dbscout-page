@@ -495,8 +495,8 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8.5 6.5 12 13 4"/></svg><span data-i18n="plan-pro-item3">Cell editing and SQL writes</span></li>
           <li><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8.5 6.5 12 13 4"/></svg><span data-i18n="plan-pro-item4">The AI writes too, when you let it</span></li>
         </ul>
-        <a class="btn btn--primary" href="https://buy.polar.sh/polar_cl_63FyUfNdec97nskwrbjNirOdqzLH13t8gYbDj0qZMnS" target="_blank" rel="noopener noreferrer" data-i18n="plan-pro-cta">Try free for 3 days</a>
-        <p class="plan__note" data-i18n="plan-pro-trial-note">Card required at signup · first charge only after 3 days · cancel before then and pay nothing</p>
+        <a class="btn btn--primary" id="polar-checkout" href="https://buy.polar.sh/polar_cl_63FyUfNdec97nskwrbjNirOdqzLH13t8gYbDj0qZMnS" target="_blank" rel="noopener noreferrer" data-polar-checkout data-polar-checkout-theme="dark" data-i18n="plan-pro-cta">Try it free</a>
+        <p class="plan__note" data-i18n="plan-pro-trial-note">Card required at signup · trial terms and price shown at checkout · cancel before the first charge and pay nothing</p>
       </div>
     </div>
   </section>
@@ -536,8 +536,8 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
     </div>
     <div class="faqlist">
       <details class="faqitem">
-        <summary data-i18n="faq-q1">How does the 3-day trial work?</summary>
-        <p data-i18n="faq-a1">Subscribing to either plan starts a 3-day window before the first charge — enough to try writing, cell editing and the AI assistants. Cancel within that window and you're never charged.</p>
+        <summary data-i18n="faq-q1">How does the free trial work?</summary>
+        <p data-i18n="faq-a1">When you subscribe, the free trial and the price are shown at checkout before you confirm — enough to try writing, cell editing and the AI assistants. Terms may vary with special conditions we offer. Cancel before the first charge and you're never charged.</p>
       </details>
       <details class="faqitem">
         <summary data-i18n="faq-q2">Can I cancel anytime?</summary>
@@ -630,12 +630,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Count, filter, group and chart straight from the grid",
       "plan-pro-item3": "Cell editing and SQL writes",
       "plan-pro-item4": "The AI writes too, when you let it",
-      "plan-pro-cta": "Try free for 3 days",
-      "plan-pro-trial-note": "Card required at signup · first charge only after 3 days · cancel before then and pay nothing",
+      "plan-pro-cta": "Try it free",
+      "plan-pro-trial-note": "Card required at signup · trial terms and price shown at checkout · cancel before the first charge and pay nothing",
       "stat-proof-html": "Cached queries: <b>170ms</b> vs. <b>479ms</b> re-copying the database on every click — measured on the test device, not a marketing number.",
       "faq-eyebrow": "FAQ", "faq-h2": "Questions people ask before subscribing",
-      "faq-q1": "How does the 3-day trial work?",
-      "faq-a1": "Subscribing to either plan starts a 3-day window before the first charge — enough to try writing, cell editing and the AI assistants. Cancel within that window and you're never charged.",
+      "faq-q1": "How does the free trial work?",
+      "faq-a1": "When you subscribe, the free trial and the price are shown at checkout before you confirm — enough to try writing, cell editing and the AI assistants. Terms may vary with special conditions we offer. Cancel before the first charge and you're never charged.",
       "faq-q2": "Can I cancel anytime?",
       "faq-a2": "Yes, no lock-in. Cancelling stops the next charge, and the license simply reverts to Free the next time it revalidates — no manual step, no support ticket.",
       "faq-q3": "Does it still work without internet?",
@@ -704,12 +704,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Contagem, filtro, agrupamento e gráfico direto da grade",
       "plan-pro-item3": "Edição de célula e escrita por SQL",
       "plan-pro-item4": "A IA também escreve, quando você deixar",
-      "plan-pro-cta": "Testar grátis por 3 dias",
-      "plan-pro-trial-note": "Cartão necessário no cadastro · primeira cobrança só depois de 3 dias · cancele antes e não paga nada",
+      "plan-pro-cta": "Testar grátis",
+      "plan-pro-trial-note": "Cartão necessário no cadastro · condições do teste e preço mostrados no checkout · cancele antes da primeira cobrança e não paga nada",
       "stat-proof-html": "Consulta com cache: <b>170ms</b> contra <b>479ms</b> copiando o banco de novo a cada clique — medido no aparelho de teste, não é número de marketing.",
       "faq-eyebrow": "Dúvidas", "faq-h2": "Perguntas antes de assinar",
-      "faq-q1": "Como funciona o teste de 3 dias?",
-      "faq-a1": "Ao assinar mensal ou anual, você tem 3 dias antes da primeira cobrança — dá pra testar escrita, edição de célula e os assistentes de IA. Cancelar dentro desse prazo não gera cobrança nenhuma.",
+      "faq-q1": "Como funciona o teste grátis?",
+      "faq-a1": "Ao assinar, o período de teste grátis e o preço aparecem no checkout antes de você confirmar — dá pra testar escrita, edição de célula e os assistentes de IA. As condições podem variar conforme condições especiais que oferecemos. Cancelar antes da primeira cobrança não gera cobrança nenhuma.",
       "faq-q2": "Posso cancelar quando quiser?",
       "faq-a2": "Sim, sem fidelidade. Cancelar impede a próxima cobrança, e a licença volta sozinha pro plano gratuito na próxima revalidação — sem passo manual, sem abrir chamado.",
       "faq-q3": "Funciona sem internet?",
@@ -778,12 +778,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Conteo, filtro, agrupamiento y gráfico directo desde la grilla",
       "plan-pro-item3": "Edición de celdas y escritura por SQL",
       "plan-pro-item4": "La IA también escribe, cuando tú lo permitas",
-      "plan-pro-cta": "Prueba gratis por 3 días",
-      "plan-pro-trial-note": "Se requiere tarjeta al registrarte · el primer cobro es recién a los 3 días · cancela antes y no pagas nada",
+      "plan-pro-cta": "Prueba gratis",
+      "plan-pro-trial-note": "Se requiere tarjeta al registrarte · las condiciones de la prueba y el precio se muestran en el checkout · cancela antes del primer cobro y no pagas nada",
       "stat-proof-html": "Consulta con caché: <b>170ms</b> frente a <b>479ms</b> copiando la base de nuevo en cada clic — medido en el dispositivo de prueba, no es un número de marketing.",
       "faq-eyebrow": "Preguntas", "faq-h2": "Preguntas antes de suscribirte",
-      "faq-q1": "¿Cómo funciona la prueba de 3 días?",
-      "faq-a1": "Al suscribirte a cualquiera de los planes, tienes 3 días antes del primer cobro — suficiente para probar la escritura, la edición de celdas y los asistentes de IA. Cancelar dentro de ese plazo no genera ningún cobro.",
+      "faq-q1": "¿Cómo funciona la prueba gratuita?",
+      "faq-a1": "Al suscribirte, el periodo de prueba gratuito y el precio se muestran en el checkout antes de confirmar — suficiente para probar la escritura, la edición de celdas y los asistentes de IA. Las condiciones pueden variar según condiciones especiales que ofrecemos. Cancela antes del primer cobro y no se te cobra nada.",
       "faq-q2": "¿Puedo cancelar cuando quiera?",
       "faq-a2": "Sí, sin permanencia. Cancelar detiene el próximo cobro, y la licencia vuelve sola al plan gratuito en la siguiente revalidación — sin pasos manuales, sin abrir un ticket.",
       "faq-q3": "¿Funciona sin internet?",
@@ -852,12 +852,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Comptage, filtre, regroupement et graphique directement depuis la grille",
       "plan-pro-item3": "Édition de cellule et écriture SQL",
       "plan-pro-item4": "L'IA écrit aussi, quand vous le lui permettez",
-      "plan-pro-cta": "Essai gratuit de 3 jours",
-      "plan-pro-trial-note": "Carte requise à l'inscription · premier prélèvement seulement après 3 jours · annulez avant et ne payez rien",
+      "plan-pro-cta": "Essai gratuit",
+      "plan-pro-trial-note": "Carte requise à l'inscription · conditions de l'essai et prix affichés au paiement · annulez avant le premier prélèvement et ne payez rien",
       "stat-proof-html": "Requête avec cache : <b>170ms</b> contre <b>479ms</b> en recopiant la base à chaque clic — mesuré sur l'appareil de test, pas un chiffre marketing.",
       "faq-eyebrow": "Questions", "faq-h2": "Questions avant de s'abonner",
-      "faq-q1": "Comment fonctionne l'essai de 3 jours ?",
-      "faq-a1": "En vous abonnant à l'un ou l'autre forfait, vous disposez de 3 jours avant le premier prélèvement — de quoi tester l'écriture, l'édition de cellule et les assistants IA. Annulez dans ce délai et vous ne serez jamais prélevé.",
+      "faq-q1": "Comment fonctionne l'essai gratuit ?",
+      "faq-a1": "À l'abonnement, la période d'essai gratuite et le prix sont affichés lors du paiement avant que vous confirmiez — de quoi tester l'écriture, l'édition de cellule et les assistants IA. Les conditions peuvent varier selon des conditions spéciales que nous proposons. Annulez avant le premier prélèvement et vous ne serez jamais prélevé.",
       "faq-q2": "Puis-je annuler à tout moment ?",
       "faq-a2": "Oui, sans engagement. L'annulation arrête le prochain prélèvement, et la licence repasse automatiquement au plan gratuit à la prochaine revalidation — sans étape manuelle, sans ticket.",
       "faq-q3": "Ça fonctionne sans connexion internet ?",
@@ -926,12 +926,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Zählen, Filtern, Gruppieren und Diagramme direkt aus dem Raster",
       "plan-pro-item3": "Zellenbearbeitung und SQL-Schreibzugriff",
       "plan-pro-item4": "Die KI schreibt ebenfalls, wenn Sie es zulassen",
-      "plan-pro-cta": "3 Tage kostenlos testen",
-      "plan-pro-trial-note": "Karte bei der Anmeldung erforderlich · erste Abbuchung erst nach 3 Tagen · vorher kündigen und nichts bezahlen",
+      "plan-pro-cta": "Kostenlos testen",
+      "plan-pro-trial-note": "Karte bei der Anmeldung erforderlich · Testbedingungen und Preis werden im Checkout angezeigt · vor der ersten Abbuchung kündigen und nichts bezahlen",
       "stat-proof-html": "Zwischengespeicherte Abfrage: <b>170ms</b> gegenüber <b>479ms</b>, wenn die Datenbank bei jedem Klick neu kopiert wird — gemessen auf dem Testgerät, keine Marketingzahl.",
       "faq-eyebrow": "Fragen", "faq-h2": "Fragen vor dem Abonnieren",
-      "faq-q1": "Wie funktioniert die 3-tägige Testphase?",
-      "faq-a1": "Mit jedem Abo beginnt eine 3-tägige Frist vor der ersten Abbuchung — genug Zeit, um Schreiben, Zellenbearbeitung und die KI-Assistenten zu testen. Kündigen Sie innerhalb dieser Frist, wird nie etwas abgebucht.",
+      "faq-q1": "Wie funktioniert die kostenlose Testphase?",
+      "faq-a1": "Beim Abschluss werden die kostenlose Testphase und der Preis vor der Bestätigung im Checkout angezeigt — genug Zeit, um Schreiben, Zellenbearbeitung und die KI-Assistenten zu testen. Die Bedingungen können je nach von uns angebotenen Sonderkonditionen abweichen. Kündigen Sie vor der ersten Abbuchung, wird nie etwas abgebucht.",
       "faq-q2": "Kann ich jederzeit kündigen?",
       "faq-a2": "Ja, ohne Mindestlaufzeit. Die Kündigung stoppt die nächste Abbuchung, und die Lizenz kehrt bei der nächsten Überprüfung von selbst zum kostenlosen Plan zurück — kein manueller Schritt, kein Support-Ticket.",
       "faq-q3": "Funktioniert es auch offline?",
@@ -1000,12 +1000,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "Conteggio, filtro, raggruppamento e grafico direttamente dalla griglia",
       "plan-pro-item3": "Modifica delle celle e scrittura via SQL",
       "plan-pro-item4": "Anche l'IA scrive, quando glielo permetti",
-      "plan-pro-cta": "Prova gratuita di 3 giorni",
-      "plan-pro-trial-note": "Carta richiesta alla registrazione · primo addebito solo dopo 3 giorni · annulla prima e non paghi nulla",
+      "plan-pro-cta": "Prova gratuita",
+      "plan-pro-trial-note": "Carta richiesta alla registrazione · condizioni della prova e prezzo mostrati al checkout · annulla prima del primo addebito e non paghi nulla",
       "stat-proof-html": "Query con cache: <b>170ms</b> contro <b>479ms</b> ricopiando il database a ogni clic — misurato sul dispositivo di test, non un numero di marketing.",
       "faq-eyebrow": "Domande", "faq-h2": "Domande prima di abbonarti",
-      "faq-q1": "Come funziona la prova di 3 giorni?",
-      "faq-a1": "Abbonandoti a uno dei due piani hai 3 giorni prima del primo addebito — abbastanza per provare la scrittura, la modifica delle celle e gli assistenti IA. Annullando entro quel termine non viene addebitato nulla.",
+      "faq-q1": "Come funziona la prova gratuita?",
+      "faq-a1": "Quando ti abboni, il periodo di prova gratuito e il prezzo sono mostrati al checkout prima della conferma — abbastanza per provare la scrittura, la modifica delle celle e gli assistenti IA. Le condizioni possono variare in base a condizioni speciali che offriamo. Annullando prima del primo addebito non viene addebitato nulla.",
       "faq-q2": "Posso annullare quando voglio?",
       "faq-a2": "Sì, senza vincoli. Annullare blocca il prossimo addebito, e la licenza torna da sola al piano gratuito alla successiva rivalidazione — nessun passaggio manuale, nessun ticket di supporto.",
       "faq-q3": "Funziona anche senza internet?",
@@ -1074,12 +1074,12 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
       "plan-pro-item2": "直接在表格里计数、筛选、分组和绘图",
       "plan-pro-item3": "单元格编辑和 SQL 写入",
       "plan-pro-item4": "授权后 AI 也能写入数据",
-      "plan-pro-cta": "免费试用3天",
-      "plan-pro-trial-note": "注册时需绑定银行卡 · 3天后才首次扣款 · 提前取消不产生任何费用",
+      "plan-pro-cta": "免费试用",
+      "plan-pro-trial-note": "注册时需绑定银行卡 · 试用条款和价格在结账页面显示 · 首次扣款前取消不产生任何费用",
       "stat-proof-html": "带缓存的查询:<b>170毫秒</b>,而每次点击都重新复制数据库需要<b>479毫秒</b>——这是在测试设备上实测的数字,不是营销说辞。",
       "faq-eyebrow": "常见问题", "faq-h2": "订阅前常见问题",
-      "faq-q1": "3天试用是如何运作的?",
-      "faq-a1": "订阅任一套餐后,首次扣款前有3天试用期——足够体验写入、单元格编辑和AI助手。在此期间取消,不会产生任何费用。",
+      "faq-q1": "免费试用是如何运作的？",
+      "faq-a1": "订阅时,免费试用期和价格会在您确认前于结账页面显示——足够体验写入、单元格编辑和AI助手。具体条件可能因我们提供的特别优惠而不同。在首次扣款前取消,不会产生任何费用。",
       "faq-q2": "可以随时取消吗?",
       "faq-a2": "可以,没有合约期限制。取消后不会再扣款,许可证会在下次校验时自动回退到免费版——无需手动操作,也不用联系支持。",
       "faq-q3": "没有网络也能用吗?",
@@ -1213,6 +1213,25 @@ footer .copy a.legal:hover{opacity:1;text-decoration:underline}
   applyLocale(initialLocale);
   refreshDownloadLinks();
 })();
+</script>
+<!-- Checkout do Polar embutido: o clique no botao do plano Pro abre o pagamento numa camada sobre a
+     pagina, sem sair do site. O host (dbscout.com.br) precisa estar listado em Polar > Settings >
+     Preferences > Embedding; sem isso o navegador recusa emoldurar, e o link do botao (href) abre
+     o checkout normal em outra aba. -->
+<script src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@0.1/dist/embed.global.js" defer data-auto-init></script>
+<script>
+  (function () {
+    var botao = document.getElementById("polar-checkout");
+    if (!botao || !window.matchMedia) return;
+    var escuro = window.matchMedia("(prefers-color-scheme: dark)");
+    function tema() {
+      var forcado = document.documentElement.getAttribute("data-theme");
+      var dark = forcado ? forcado === "dark" : escuro.matches;
+      botao.setAttribute("data-polar-checkout-theme", dark ? "dark" : "light");
+    }
+    tema();
+    if (escuro.addEventListener) escuro.addEventListener("change", tema);
+  })();
 </script>
 </body>
 </html>

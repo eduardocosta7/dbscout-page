@@ -68,11 +68,13 @@ advertising identifiers.</li>
 names, package names and SQL you write are never sent to us.</li>
 <li><strong>Four product connections, none of them for your data:</strong> the license check, the desktop
 updater, the desktop error report (scrubbed before it leaves) and the downloads you ask for.
-Each one is described below.</li>
+Besides them, the screen loads its typefaces from Google Fonts, and, if you subscribe, the
+checkout page of our payment provider opens. Each one is described below.</li>
 <li><strong>The AI assistant is the one exception, and you start it.</strong> When you ask the assistant a
-question, the AI tool on your computer (Claude Code, Codex or Gemini) sends your question and
-what it reads from the databases and app preferences to its vendor, under <strong>your own account</strong> with that vendor.
-We do not receive any of it.</li>
+question, the AI tool you chose on your computer sends your question and what it reads from the
+databases and app preferences to wherever that tool sends it — for Claude Code, Codex and
+Gemini, their vendor, under <strong>your own account</strong> with that vendor (see section 3.7). We do not
+receive any of it.</li>
 </ul>
 <h2>2. Data that stays on your computer</h2>
 <p>DBScout works locally. To show you a database, it copies the database file (and its <code>-wal</code>,
@@ -82,14 +84,33 @@ DBScout data folder on your computer. Stored there, and only there:</p>
 <li>copies (snapshots) of the databases and app preferences files you open, kept to avoid
 re-copying them over the cable;</li>
 <li>the copy of a database taken before the AI assistant&#39;s first write, so you can restore it;</li>
-<li>your open tabs, the SQL you write and your preferences;</li>
-<li>the error reports waiting to be sent (desktop only, see section 3.3);</li>
-<li>the AI assistant tools DBScout installed for you, and <code>adb</code> if you installed it from DBScout.</li>
+<li>the <strong>database snapshots</strong> you save (Pro): full copies of a database, each with the name you
+gave it and the date it was saved. A snapshot holds the data of that database — possibly
+personal data of other people (section 4) — and is kept on this computer, in the <code>retratos</code>
+folder inside the DBScout data folder, until you delete it in DBScout or delete that folder.
+Snapshots never leave your computer;</li>
+<li>your settings (theme, language and panel sizes) and when the Pro reminder was last shown or
+postponed;</li>
+<li>on macOS, the identifiers of the iPhone apps DBScout has found or that you typed in, so it can
+find them again;</li>
+<li>the error reports waiting to be sent, and the anonymous sign-in credential used to send them
+(desktop only, see section 3.3);</li>
+<li>the AI assistant tools DBScout installed for you, and <code>adb</code> if you installed it from DBScout;</li>
+<li>the <strong>queries you save</strong> and the <strong>history of the last 50 queries you ran</strong> in the SQL query
+tab (Pro), one file per app (<code>consultas/&lt;app&gt;.json</code>), readable only by your user account. The
+SQL text can contain data you typed in it — a name or a code in a <code>WHERE</code>, for example. It is
+never sent anywhere.</li>
 </ul>
+<p>DBScout does not keep your open tabs after you close it. The SQL you write is kept only as saved
+queries and query history, as described above. The <strong>app log</strong> you open in a tab (Android) is not
+stored at all: it is shown on screen and leaves memory when you close the tab.</p>
 <p>Your <strong>license key</strong> is kept in your operating system&#39;s secure store (Keychain on macOS,
 Credential Manager on Windows, the Secret Service on Linux), not in a plain file.</p>
 <p>You can delete all of this at any time by uninstalling DBScout and deleting its data folder.
-We cannot see, access or delete it for you: it never reaches us.</p>
+Uninstalling alone does not delete the data folder, and so does not delete your database
+snapshots, your saved queries or your query history: delete snapshots and saved queries and clear
+the query history in DBScout, or delete the folder. We cannot see, access or delete it for you:
+it never reaches us.</p>
 <h2>3. Data that leaves your computer</h2>
 <h3>3.1 License check (only if you entered a license key)</h3>
 <p>When you activate DBScout Pro, and about every 6 hours afterwards, DBScout sends to our license
@@ -100,9 +121,12 @@ server:</p>
 without revealing its name, serial number or user).</li>
 </ul>
 <p>The license server runs on <strong>Cloudflare Workers</strong> (Cloudflare, Inc.) and asks <strong>Polar</strong>
-(Polar Software, Inc., our payment and subscription provider) whether the key is valid. The
-answer is a signed token tied to this computer. To prevent abuse of the free trial, the server
-keeps one record per computer that started a trial: the computer hash and the Polar customer ID.</p>
+(Polar Software, Inc., our payment and subscription provider) whether the key is valid. When you
+activate a key, the server sends the computer hash to Polar, which stores it as that key&#39;s
+<strong>activation</strong>: this is how one key works on one computer at a time. The answer is a signed token
+tied to this computer. To prevent abuse of the free trial, the server keeps one record per
+computer that started a trial: the computer hash and the Polar customer ID. That record is kept
+for as long as the product exists, because its only purpose is to allow one trial per computer.</p>
 <p>If you use the free plan without a key, DBScout does not talk to the license server at all.</p>
 <h3>3.2 Updates (desktop app)</h3>
 <p>The desktop app checks for a new version when it opens and every 24 hours. It downloads a small
@@ -111,16 +135,20 @@ Nothing about you is sent besides what any download reveals (your IP address and
 version). The extension is updated by your editor&#39;s marketplace, under its own terms.</p>
 <h3>3.3 Error reports (desktop app)</h3>
 <p>When the desktop app hits a defect (an internal error, a crash, a screen that failed to draw), it
-records a short error report: the app version, the operating system, which part of the program
-failed, the error message, the source-code location and a short stack trace.</p>
+records a short error report: a random report ID, the time it happened, the app version, the
+operating system, which part of the program failed, the error message, the source-code location,
+a short stack trace and whether the failure was fatal (closed a screen or the app).</p>
 <p>Before a report is stored or sent, DBScout <strong>scrubs</strong> it: absolute file paths, package names,
-database file names and e-mail addresses are replaced by placeholders such as <code>&lt;path&gt;</code>. Cell
-contents and the text of your SQL are never part of a report. Expected situations (an unplugged
+database file names and e-mail addresses are replaced by the placeholders <code>&lt;caminho&gt;</code>,
+<code>&lt;pacote&gt;</code>, <code>&lt;banco&gt;</code> and <code>&lt;email&gt;</code>. Cell
+contents, the text of your SQL and the lines of an app&#39;s log are never part of a report. Expected situations (an unplugged
 cable, a non-debuggable app, a typo in your SQL) are not reported.</p>
 <p>Reports are sent to <strong>Google Firebase (Cloud Firestore)</strong>, project <code>db-inspector-8f280</code>, with
-an anonymous sign-in that carries no account, name or e-mail. We use them only to find and fix
-defects, and delete them when they are no longer useful for that. The extension does not send
-error reports.</p>
+an anonymous sign-in that carries no account, name or e-mail. That sign-in does create a
+<strong>pseudonymous installation ID</strong>, which stays the same for the reports sent from this
+installation (its credential is kept in the DBScout data folder), and, as with any connection,
+Google sees the IP address that sends them. We use reports only to find and fix defects, keep
+them for up to <strong>12 months</strong> and then delete them. The extension does not send error reports.</p>
 <h3>3.4 Downloads you ask for</h3>
 <p>When you click to install a component or an AI assistant, DBScout downloads it from the
 vendor&#39;s official address: <code>adb</code> and the Android USB driver from Google (<code>dl.google.com</code>), the
@@ -134,24 +162,41 @@ loaded from the internet by the screen.</p>
 <p>Subscriptions are sold and charged by <strong>Polar</strong>, which acts as the merchant of record. Polar
 collects your name, e-mail, billing address and payment details to process the payment and send
 your license key. We see your e-mail and subscription status in the Polar dashboard; we never see
-your full card number. Polar&#39;s privacy policy applies to that data.</p>
+your full card number. Polar&#39;s privacy policy applies to that data. The checkout page is
+Polar&#39;s: in the desktop app it opens in a separate DBScout window, and in the extension, in your
+browser.</p>
 <h3>3.7 The AI assistant (Pro)</h3>
-<p>The AI chat runs the assistant&#39;s own command-line tool on your computer, with <strong>your account</strong>
-with that vendor (Anthropic for Claude Code, OpenAI for Codex, Google for Gemini). When you ask a
-question, that tool sends the question and the data it reads through DBScout (table names,
-columns, rows, app preferences) to the vendor. That data is governed by <strong>your agreement with the vendor</strong>, not by
-us. DBScout never sees or stores your vendor credentials.</p>
+<p>The AI chat runs the assistant&#39;s own command-line tool on your computer. In the desktop app the
+chat offers Claude Code (Anthropic), Codex (OpenAI), Gemini (Google) and Ollama, and you may add
+other tools yourself in the <code>assistentes.toml</code> file; the extension&#39;s chat offers Claude Code and
+Codex. When you ask a question, the tool you chose sends the question and the data it reads
+through DBScout (table names, columns, rows, app preferences) to wherever that tool sends it:</p>
+<ul>
+<li><strong>Claude Code, Codex and Gemini</strong> send it to their vendor, with <strong>your account</strong> with that
+vendor. That data is governed by <strong>your agreement with the vendor</strong>, not by us. Claude Code and
+Codex also keep their own session history on your computer (in <code>~/.claude</code> and <code>~/.codex</code>),
+under the vendor&#39;s rules.</li>
+<li><strong>Ollama</strong> runs the model on your computer, unless you configured it to use a remote model. As
+DBScout sets it up, it answers without reading your databases.</li>
+<li><strong>A tool you added yourself</strong> sends the data wherever that tool sends it, under its own terms.</li>
+</ul>
+<p>DBScout never sees or stores your vendor credentials.</p>
 <p>The assistant reaches your databases through a server that DBScout runs <strong>only on your computer</strong>
 (<code>127.0.0.1</code>), protected by a random token that changes every time DBScout opens. It is not
 reachable from other computers. If you connect other AI tools of your editor to DBScout, the same
 applies to them: the data they read goes to their vendor, under your account.</p>
 <p><strong>Do not ask the assistant about a database you are not allowed to share with that vendor.</strong></p>
+<h3>3.8 The website</h3>
+<p>The website <code>dbscout.com.br</code> is hosted on <strong>GitHub Pages</strong> (GitHub, Inc.). As with any website,
+GitHub may log the IP address and request details of visitors, under GitHub&#39;s privacy statement.</p>
 <h2>4. Personal data inside your databases</h2>
 <p>The databases you inspect may contain personal data of other people (for example, the users of
 the app you are developing). For that data, <strong>you (or your employer or client) are the
 controller</strong>: you decide what to open, edit, export or show to an AI assistant. DBScout only
 processes it on your computer, at your command, and does not send it to us.</p>
-<p>If you export data to CSV, Excel or TXT, the exported file is yours to protect.</p>
+<p>If you export data to CSV, Excel or TXT, the exported file is yours to protect. The same goes for
+the database snapshots you save (section 2): they are copies of that data on your computer, and
+protecting them and deleting them when you no longer need them is up to you.</p>
 <h2>5. Third-party tools are your choice</h2>
 <p>DBScout does not require you to use any third-party tool. <code>adb</code>, Xcode, the AI assistants and your
 editor are distributed by their owners (Google, Apple, Anthropic, OpenAI, Microsoft and others),
@@ -166,6 +211,9 @@ them.</p>
 <li><strong>Error reports:</strong> our legitimate interest in fixing defects, limited by the scrubbing above.</li>
 <li><strong>Downloads and updates:</strong> performance of the contract (providing the software you use).</li>
 </ul>
+<p><strong>How long we keep it.</strong> Error reports are kept for up to 12 months and then deleted. The trial
+record is kept for as long as the product exists. License and payment data is kept by Polar under
+its own policy.</p>
 <h2>7. Who receives data, and where</h2>
 <div class="tabela"><table>
 <thead>
@@ -182,12 +230,12 @@ them.</p>
 </tr>
 <tr>
 <td>Polar Software, Inc.</td>
-<td>Payment, subscription, license keys</td>
+<td>Payment, subscription, license keys, and the computer hash as the key&#39;s activation (one computer per key)</td>
 <td>United States</td>
 </tr>
 <tr>
 <td>Google LLC (Firebase)</td>
-<td>Scrubbed error reports (desktop)</td>
+<td>Scrubbed error reports, anonymous installation ID and IP address (desktop)</td>
 <td>United States</td>
 </tr>
 <tr>
@@ -196,7 +244,12 @@ them.</p>
 <td>Global network</td>
 </tr>
 <tr>
-<td>Anthropic, OpenAI, Google</td>
+<td>GitHub, Inc.</td>
+<td>Website hosting (visitors&#39; IP addresses)</td>
+<td>United States</td>
+</tr>
+<tr>
+<td>Anthropic, OpenAI, Google, or a tool you added</td>
 <td>Only what <strong>you</strong> ask the AI assistant, under <strong>your</strong> account</td>
 <td>Per your vendor agreement</td>
 </tr>
@@ -208,7 +261,8 @@ data with anyone else, and we do not use it for advertising.</p>
 <p>In the last 12 months we have collected, from subscribers only: <strong>identifiers</strong> (license key, a
 hash of the computer identity, Polar customer ID, e-mail via Polar) and <strong>commercial
 information</strong> (subscription status), for the purposes in section 3. From desktop users we may
-also receive scrubbed <strong>error reports</strong> (app version, operating system and technical details).
+also receive scrubbed <strong>error reports</strong> (app version, operating system and technical details),
+with the <strong>IP address and anonymous installation ID</strong> of the installation that sends them.
 We collect no sensitive personal information, no precise geolocation, and no biometric data.</p>
 <p><strong>We do not sell or share personal information</strong>, as &quot;sell&quot; and &quot;share&quot; are defined by the
 CCPA/CPRA, and we have not done so in the last 12 months. We do not use it for cross-context
